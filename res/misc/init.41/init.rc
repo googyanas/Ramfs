@@ -708,10 +708,10 @@ service DR-daemon /system/bin/ddexe
     user root
     group system radio inet net_raw
 
-#service KIES-daemon /system/bin/kiesexe
-#    class main
-#    user root
-#    group system radio inet net_raw
+service KIES-daemon /system/bin/kiesexe
+    class main
+    user root
+    group system radio inet net_raw
 
 service SMD-daemon /system/bin/smdexe
     class main
@@ -853,17 +853,6 @@ service immvibed /system/bin/immvibed
     user shell
     group shell
     oneshot
-
-# service for TZPR provisioning version check app
-service scranton_RD /system/bin/scranton_RD
-    class main
-    user root
-    disabled
-    oneshot
-
-# start for TZPR provisioning version check app
-on property:sys.mobicoredaemon.enable=true
-    start scranton_RD
 
 service sshd /system/bin/start-ssh
     class main
