@@ -30,7 +30,6 @@ echo "${cpu_undervolting}" > /sys/devices/system/cpu/cpu0/cpufreq/vdd_levels
   
 if [ "$zram_switch" == "on" ];then
 
-
   echo `expr $zram_swappiness \* 1` > /proc/sys/vm/swappiness
   swapoff /dev/block/zram0 > /dev/null 2>&1
   echo 1 > /sys/devices/virtual/block/zram0/reset
@@ -39,7 +38,6 @@ if [ "$zram_switch" == "on" ];then
   mkswap /dev/block/zram0 > /dev/null 2>&1
   swapon /dev/block/zram0 > /dev/null 2>&1
   
-
 #    chmod 0600 /sys/block/zram0/disksize
 #    chown system system /sys/block/zram0/disksize
 #    echo "${zram_size}" > /sys/block/zram0/disksize
@@ -77,10 +75,10 @@ fi
 
 ##### GGY Swap end #####
 
-echo "$int_scheduler" > /sys/block/mmcblk0/queue/scheduler
-echo "$int_read_ahead_kb" > /sys/block/mmcblk0/bdi/read_ahead_kb
-echo "$ext_scheduler" > /sys/block/mmcblk1/queue/scheduler
-echo "$ext_read_ahead_kb" > /sys/block/mmcblk1/bdi/read_ahead_kb
+echo "${int_scheduler}" > /sys/block/mmcblk0/queue/scheduler
+echo "${int_read_ahead_kb}" > /sys/block/mmcblk0/bdi/read_ahead_kb
+echo "${ext_scheduler}" > /sys/block/mmcblk1/queue/scheduler
+echo "${ext_read_ahead_kb}" > /sys/block/mmcblk1/bdi/read_ahead_kb
 
 
 ##### GGY TouchWake #####
