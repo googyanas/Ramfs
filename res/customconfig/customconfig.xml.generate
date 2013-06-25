@@ -44,7 +44,7 @@ cat << ENDCONFIG
              <spinnerItem name="lulzactiveq" value="lulzactiveq"/> 
              <spinnerItem name="hotplug" value="hotplug"/> 
        </spinner>
-      <spinner description="Set the maximum freqency the CPU scales up to. Default: `expr \`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq\` / 1000` MHz." 
+      <spinner description="Set the maximum freqency the CPU scales up to. Default: 1400 MHz." 
                name="CPU max frequency" 
                action="generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq">"
 `
@@ -55,7 +55,7 @@ while read FREQ UVOLT; do
 done
 `
        </spinner>
-      <spinner description="Set the minimum freqency the CPU scales down to. Default: `expr \`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq\` / 1000` MHz." 
+      <spinner description="Set the minimum freqency the CPU scales down to. Default: 200 MHz." 
                name="CPU min frequency" 
                action="generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq">"
 `
@@ -99,34 +99,29 @@ done
     <settingsPane description="GPU Frequency Settings. Default frequencies are: 160, 266, 350, 440MHz and 533MHz. Warning: Changing GPU frequency or voltages may cause lockups or damage on your device." name="GPUFreq">
       <spinner description="Changes the first (lowest) GPU frequency step" name="GPU Freq Step1" action="gpu-freq 1">
              <spinnerItem name="266MHz" value="266"/> 
-             <spinnerItem name="200MHz" value="200"/> 
              <spinnerItem name="160MHz" value="160"/> 
              <spinnerItem name="108MHz" value="108"/> 
              <spinnerItem name="54MHz" value="54"/> 
       </spinner>
-      <spinner description="Changes the second GPU frequency step" name="GPU Freq Step2" action="gpu-freq 2">
-             <spinnerItem name="400MHz" value="400"/> 
+      <spinner description="Changes the second GPU frequency step" name="GPU Freq Step2" action="gpu-freq 2"> 
              <spinnerItem name="350MHz" value="350"/> 
              <spinnerItem name="333MHz" value="333"/> 
              <spinnerItem name="300MHz" value="300"/> 
              <spinnerItem name="275MHz" value="275"/> 
-             <spinnerItem name="266MHz" value="266"/> 
-             <spinnerItem name="200MHz" value="200"/> 
+             <spinnerItem name="266MHz" value="266"/>  
              <spinnerItem name="160MHz" value="160"/> 
              <spinnerItem name="108MHz" value="108"/> 
       </spinner>
       <spinner description="Changes the third GPU frequency step" name="GPU Freq Step3" action="gpu-freq 3">
              <spinnerItem name="640MHz" value="640"/> 
              <spinnerItem name="600MHz" value="600"/> 
-             <spinnerItem name="533MHz" value="533"/> 
+	     <spinnerItem name="533MHz" value="533"/> 
              <spinnerItem name="440MHz" value="440"/> 
-             <spinnerItem name="400MHz" value="400"/> 
              <spinnerItem name="350MHz" value="350"/> 
              <spinnerItem name="333MHz" value="333"/> 
              <spinnerItem name="300MHz" value="300"/> 
              <spinnerItem name="275MHz" value="275"/> 
              <spinnerItem name="266MHz" value="266"/> 
-             <spinnerItem name="200MHz" value="200"/> 
              <spinnerItem name="160MHz" value="160"/> 
       </spinner>
       <spinner description="Changes the fourth GPU frequency step" name="GPU Freq Step4" action="gpu-freq 4">
@@ -134,15 +129,13 @@ done
              <spinnerItem name="666MHz" value="666"/> 
              <spinnerItem name="640MHz" value="640"/> 
              <spinnerItem name="600MHz" value="600"/> 
-             <spinnerItem name="533MHz" value="533"/> 
+	     <spinnerItem name="533MHz" value="533"/> 
              <spinnerItem name="440MHz" value="440"/> 
-             <spinnerItem name="400MHz" value="400"/> 
              <spinnerItem name="350MHz" value="350"/> 
              <spinnerItem name="333MHz" value="333"/> 
              <spinnerItem name="300MHz" value="300"/> 
              <spinnerItem name="275MHz" value="275"/> 
-             <spinnerItem name="266MHz" value="266"/> 
-             <spinnerItem name="200MHz" value="200"/> 
+             <spinnerItem name="266MHz" value="266"/>  
       </spinner>
       <spinner description="Changes the fifth GPU frequency step" name="GPU Freq Step5" action="gpu-freq 5">
              <spinnerItem name="700MHz" value="700"/> 
@@ -151,13 +144,11 @@ done
              <spinnerItem name="600MHz" value="600"/> 
              <spinnerItem name="533MHz" value="533"/> 
              <spinnerItem name="440MHz" value="440"/> 
-             <spinnerItem name="400MHz" value="400"/> 
              <spinnerItem name="350MHz" value="350"/> 
              <spinnerItem name="333MHz" value="333"/> 
              <spinnerItem name="300MHz" value="300"/> 
              <spinnerItem name="275MHz" value="275"/> 
              <spinnerItem name="266MHz" value="266"/> 
-             <spinnerItem name="200MHz" value="200"/> 
              <spinnerItem name="160MHz" value="160"/> 
              <spinnerItem name="108MHz" value="108"/> 
              <spinnerItem name="54MHz" value="54"/> 
@@ -196,31 +187,74 @@ done
     </settingsPane>
   </settingsTab>
 
+
   <settingsTab name="Audio">
+    <settingsPane description="Speaker Equalizer" name="Speaker Equalizer">
+
+      <seekBar  description="" 
+		name="Bass gain" 
+                action="generic /sys/class/misc/wolfson_control/eq_sp_gain_2" 
+                unit=" dB" min="-10" reversed="false" step="1" max="10"/>
+
+      <seekBar  description="" 
+		name="Mid gain" 
+                action="generic /sys/class/misc/wolfson_control/eq_sp_gain_3" 
+                unit=" dB" min="-10" reversed="false" step="1" max="10"/>
+
+      <seekBar  description="" 
+		name="Treble gain" 
+                action="generic /sys/class/misc/wolfson_control/eq_sp_gain_4" 
+                unit=" dB" min="-10" reversed="false" step="1" max="10"/>
+
+    </settingsPane>
+
     <settingsPane description="Speaker Tuning Settings" name="Speaker Tuning">
-      <checkbox description="Enable speaker tuning for better bass response on main speakers" name="Speaker Tuning" action="generic01 /sys/class/misc/scoobydoo_sound/speaker_tuning" label="Speaker Tuning"/>
-      <seekBar description="Speaker Amplification Offset. 0 means stock value. Having too much amplification may cause distortion." 
-		name="Speaker Amplification Offset" action="generic /sys/class/misc/scoobydoo_sound/speaker_offset" unit="" min="-6" reversed="false" step="1" max="6"/>
+
+      <seekBar  description="External speaker amlification level." 
+		name="Speaker volume" 
+                action="generic_spk /sys/class/misc/wolfson_control/speaker_left" 
+                unit="" min="57" reversed="false" step="1" max="63"/>
+
+      <seekBar  description="" 
+		name="Speaker boost level"
+                action="generic /sys/class/misc/wolfson_control/speaker_boost_level" 
+                unit="" min="0" reversed="false" step="1" max="7"/>
+
+      <checkbox  description="Prevents any sound to be outputted via speaker when headphones are connected." 
+                name="Privacy mode" 
+                action="generic0101 /sys/class/misc/wolfson_control/switch_privacy_mode"
+                label="Enable privacy mode"/>
     </settingsPane>
-    <settingsPane description="Headphone Amplification Settings" name="Headphone Amplification">
-      <seekBar description="Headphone Amplifier Level (0-63 which corresponds to -57db-6db)" 
-		name="Headphone Amplifier" action="generic /sys/class/misc/scoobydoo_sound/headphone_amplifier_level" unit="" min="0" reversed="false" step="1" max="63"/>
+
+    <settingsPane description="Headphone amplification increases volume only on headphones and headsets." 
+		  name="Headphone Amplification">
+      <seekBar  description="Headphone Amplifier Level (0-63 which corresponds to -57db-6db)" 
+		name="Headphone left channel volume"
+                action="generic /sys/class/misc/wolfson_control/headphone_left" 
+                unit="" min="0" reversed="false" step="1" max="63"/>      
+
+      <seekBar  description="" 
+		name="Headphone right channel volume"
+                action="generic /sys/class/misc/wolfson_control/headphone_right" 
+                unit="" min="0" reversed="false" step="1" max="63"/>
     </settingsPane>
-    <settingsPane description="3D Effect Settings" name="3D Effect">
-      <spinner description="3D effect" name="3D Effect" action="generic /sys/class/misc/scoobydoo_sound/stereo_expansion">
-             <spinnerItem name="Disabled" value="0"/> 
-             <spinnerItem name="Enabled" value="1"/> 
-      </spinner>
-      <seekBar description="3D Effect Gain Level (0-31)" 
-		name="3D Effect Gain" action="generic /sys/class/misc/scoobydoo_sound/stereo_expansion_gain" unit="" min="0" reversed="false" step="1" max="31"/>
+
+    <settingsPane description="The stereo expansion effect produces a virtual 3D effect on sound." 
+		  name="Stereo expansion">
+      <seekBar  description="Stereo expansion level (0-31dB). 0 disables the control." 
+		name="Stereo expansion"
+                action="generic /sys/class/misc/wolfson_control/stereo_expansion" 
+                unit="" min="0" reversed="false" step="1" max="31"/>
     </settingsPane>
-    <settingsPane description="EQ Settings" name="EQ Settings">
+
+    <settingsPane description="Controls the hardware equalizer." 
+                  name="Equalizer settings">
+
       <spinner description="Choose which equalizer settings to use: Presets or Graphical Equalizer." name="EQ Presets" action="eq-presets eq_selection">
              <spinnerItem name="Use presets" value="0"/> 
              <spinnerItem name="Use graphical equalizer" value="1"/> 
       </spinner>
-    </settingsPane>
-    <settingsPane description="EQ Presets" name="EQ Presets">
+
       <spinner description="Hardware Equalizer Presets" name="EQ Presets" action="eq-presets eq_preset">
              <spinnerItem name="Flat (Disabled)" value="0"/> 
              <spinnerItem name="Bass-extreme" value="1"/> 
@@ -231,56 +265,88 @@ done
              <spinnerItem name="Eargasm" value="6"/> 
              <spinnerItem name="Googy-Max" value="7"/> 
       </spinner>
+
+      <seekBar  description="" 
+		name="Band1 gain" 
+                action="generic /sys/class/misc/wolfson_control/eq_hp_gain_1" 
+                unit=" dB" min="-12" reversed="false" step="1" max="12"/>
+
+      <seekBar  description="" 
+		name="Band2 gain" 
+                action="generic /sys/class/misc/wolfson_control/eq_hp_gain_2" 
+                unit=" dB" min="-12" reversed="false" step="1" max="12"/>
+
+      <seekBar  description="" 
+		name="Band3 gain" 
+                action="generic /sys/class/misc/wolfson_control/eq_hp_gain_3" 
+                unit=" dB" min="-12" reversed="false" step="1" max="12"/>
+
+      <seekBar  description="" 
+		name="Band4 gain" 
+                action="generic /sys/class/misc/wolfson_control/eq_hp_gain_4" 
+                unit=" dB" min="-12" reversed="false" step="1" max="12"/>
+
+      <seekBar  description="" 
+		name="Band5 gain" 
+                action="generic /sys/class/misc/wolfson_control/eq_hp_gain_5" 
+                unit=" dB" min="-12" reversed="false" step="1" max="12"/>
     </settingsPane>
-    <settingsPane description="Graphical Equalizer" name="Graphical Equalizer">
-      <seekBar description="" 
-		name="Band1 gain" action="eq-presets eq_band1" unit=" dB" min="-12" reversed="false" step="1" max="12"/>
-      <seekBar description="" 
-		name="Band2 gain" action="eq-presets eq_band2" unit=" dB" min="-12" reversed="false" step="1" max="12"/>
-      <seekBar description="" 
-		name="Band3 gain" action="eq-presets eq_band3" unit=" dB" min="-12" reversed="false" step="1" max="12"/>
-      <seekBar description="" 
-		name="Band4 gain" action="eq-presets eq_band4" unit=" dB" min="-12" reversed="false" step="1" max="12"/>
-      <seekBar description="" 
-		name="Band5 gain" action="eq-presets eq_band5" unit=" dB" min="-12" reversed="false" step="1" max="12"/>
+
+    <settingsPane description="The microphone levels control the mic sensitivity." 
+		  name="Microphone control">
+      <seekBar  description="" 
+		name="Microphone level general"
+                action="generic /sys/class/misc/wolfson_control/mic_level_general" 
+                unit="" min="0" reversed="false" step="1" max="31"/>
+
+      <seekBar  description="" 
+		name="Microphone level during active camera"
+                action="generic /sys/class/misc/wolfson_control/mic_level_camera" 
+                unit="" min="0" reversed="false" step="1" max="31"/>
+
+      <seekBar  description="" 
+		name="Microphone level in-call"
+                action="generic /sys/class/misc/wolfson_control/mic_level_call"
+                unit="" min="0" reversed="false" step="1" max="31"/>
     </settingsPane>
-    <settingsPane description="EQ Extras" name="EQ Extras">
-      <seekBar description="This will prevent distortion by decreasing the output volume by the selected amount. Leave it 0 if you do not have a distortion problem." 
-		name="Negative Digital Gain" action="eq-presets digital_gain" unit=" dB" min="0" reversed="false" step="1" max="12"/>
-    </settingsPane>
+
     <settingsPane description="Optimization, conversion quality, signal processing and effect settings" name="Other Settings">
-      <spinner description="Tuned WM1811 FLL to generate clock source" name="FLL Tuning" action="generic /sys/class/misc/scoobydoo_sound/fll_tuning">
-             <spinnerItem name="Disabled" value="0"/> 
-             <spinnerItem name="Enabled" value="1"/> 
-      </spinner>
-      <spinner description="For 48kHz sample rate, the DAC oversample rate is 128fs when this option is selected, which makes the music sound better." name="DAC OverSampling" action="generic /sys/class/misc/scoobydoo_sound/dac_osr128">
-             <spinnerItem name="Disabled" value="0"/> 
-             <spinnerItem name="Enabled" value="1"/> 
-      </spinner>
-      <spinner description="Bypass analog channel mixer and redirect the sound directly to the output." name="dac direct" action="generic /sys/class/misc/scoobydoo_sound/dac_direct">
-             <spinnerItem name="Disabled" value="0"/> 
-             <spinnerItem name="Enabled" value="1"/> 
-      </spinner>
-      <spinner description="This forces the output to be mono even if the source is stereo" name="Force Mono" action="generic /sys/class/misc/scoobydoo_sound/mono_downmix">
-             <spinnerItem name="Disabled" value="0"/> 
-             <spinnerItem name="Enabled" value="1"/> 
-      </spinner>
+      <checkbox  description="Tuned WM1811 FLL to generate clock source" 
+                name="FLL Tuning" 
+                action="generic0101 /sys/class/misc/wolfson_control/switch_fll_tuning"
+                label="Enable FLL Tuning"/>
+
+      <checkbox  description="For 48kHz sample rate, the DAC oversample rate is 128fs when this option is selected, which makes the music sound better." 
+                name="DAC OverSampling" 
+                action="generic0101 /sys/class/misc/wolfson_control/switch_oversampling"
+                label="Enable DAC Oversampling"/>
+
+      <checkbox  description="Bypass analog channel mixer and redirect the sound directly to the output." 
+                name="DAC Direct" 
+                action="generic0101 /sys/class/misc/wolfson_control/switch_dac_direct"
+                label="Enable DAC direct"/>
+
+      <checkbox  description="This forces the output to be mono even if the source is stereo" 
+                name="Force Mono Downmix" 
+                action="generic0101 /sys/class/misc/wolfson_control/switch_mono_downmix"
+                label="Enable force mono downmix"/>
+
     </settingsPane>
   </settingsTab>
-  
+
   <settingsTab name="Screen">
     <settingsPane description="Other screen related settings" name="Other Settings">
        <checkbox description="mDNIe sharpness tweaks from hardcore. Requires reboot to be effective." name="mDNIe Sharpness Tweaks" action="generic01 /tmp/mdniemod" label="mDNIe Sharpness Tweaks"/>
        <checkbox description="Enable inverting the screen colors by quickly pressing Home button 4 times" name="mDNIe Negative Toggle" action="generic01 /sys/module/gpio_keys/parameters/mdnie_shortcut_enabled" label="mDNIe Negative Toggle"/>
         <spinner description="Set CPU freq boost level when you touch the screen. Lower levels will help with the battery with the cost of UI lags" name="Touch Boost Level" action="generic /sys/class/misc/m0mods/touch_boost_level">
-             <spinnerItem name="1200MHz" value="6"/> 
-             <spinnerItem name="1000MHz" value="8"/> 
-             <spinnerItem name="900MHz" value="9"/> 
-             <spinnerItem name="800MHz (default)" value="10"/> 
-             <spinnerItem name="700MHz" value="11"/> 
-             <spinnerItem name="600MHz" value="12"/> 
-             <spinnerItem name="500MHz" value="13"/> 
-             <spinnerItem name="200MHz (disabled)" value="16"/> 
+             <spinnerItem name="1200MHz" value="4"/> 
+             <spinnerItem name="1000MHz" value="6"/> 
+             <spinnerItem name="900MHz" value="7"/> 
+             <spinnerItem name="800MHz (default)" value="8"/> 
+             <spinnerItem name="700MHz" value="9"/> 
+             <spinnerItem name="600MHz" value="10"/> 
+             <spinnerItem name="500MHz" value="11"/> 
+             <spinnerItem name="200MHz (disabled)" value="14"/> 
        </spinner>
               <seekBar description="FB earlysuspend delay to run CRT animation when you turn the screen off." 
 		name="FB Earlysuspend Delay" action="generickmem fbearlysuspend_delay 0 int" unit=" ms" min="0" reversed="false" step="100" max="500"/>

@@ -175,7 +175,7 @@ insmod /lib/modules/cpufreq_lulzactiveq.ko
 insmod /lib/modules/sio-iosched.ko
 insmod /lib/modules/vr-iosched.ko
 # audio enhancements
-insmod /lib/modules/kscoobydoo.ko devicename=scoobydoo_sound
+# insmod /lib/modules/kscoobydoo.ko devicename=scoobydoo_sound
 
 exec /sbin/init2
 
