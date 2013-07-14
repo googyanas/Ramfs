@@ -213,3 +213,132 @@ echo $int_slice_2_volt > /sys/devices/system/abb/int/int_slice_2_volt
      if "$default_scaling_governor" == "lulzactiveq";then
         echo "lulzactiveq" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
      fi
+
+chmod 0666 /sys/class/misc/wolfson_control/switch_master
+chmod 0666 /sys/class/misc/wolfson_control/switch_eq_speaker
+chmod 0666 /sys/class/misc/wolfson_control/speaker_boost_level
+chmod 0666 /sys/class/misc/wolfson_control/speaker_left
+chmod 0666 /sys/class/misc/wolfson_control/speaker_right
+chmod 0666 /sys/class/misc/wolfson_control/switch_privacy_mode
+chmod 0666 /sys/class/misc/wolfson_control/headphone_left
+chmod 0666 /sys/class/misc/wolfson_control/headphone_right
+chmod 0666 /sys/class/misc/wolfson_control/stereo_expansion
+chmod 0666 /sys/class/misc/wolfson_control/switch_eq_headphone
+chmod 0666 /sys/class/misc/wolfson_control/eq_hp_gain_1
+chmod 0666 /sys/class/misc/wolfson_control/eq_hp_gain_2
+chmod 0666 /sys/class/misc/wolfson_control/eq_hp_gain_3
+chmod 0666 /sys/class/misc/wolfson_control/eq_hp_gain_4
+chmod 0666 /sys/class/misc/wolfson_control/eq_hp_gain_5
+chmod 0666 /sys/class/misc/wolfson_control/mic_level_general
+chmod 0666 /sys/class/misc/wolfson_control/mic_level_camera
+chmod 0666 /sys/class/misc/wolfson_control/mic_level_call
+chmod 0666 /sys/class/misc/wolfson_control/switch_fll_tuning
+chmod 0666 /sys/class/misc/wolfson_control/switch_oversampling
+chmod 0666 /sys/class/misc/wolfson_control/switch_dac_direct
+chmod 0666 /sys/class/misc/wolfson_control/switch_mono_downmix
+
+echo 1 > /sys/class/misc/wolfson_control/switch_master
+
+echo $speaker_boost_level > /sys/class/misc/wolfson_control/speaker_boost_level
+echo $speaker_left > /sys/class/misc/wolfson_control/speaker_left
+echo $speaker_right > /sys/class/misc/wolfson_control/speaker_right
+echo $switch_privacy_mode > /sys/class/misc/wolfson_control/switch_privacy_mode
+echo $headphone_left > /sys/class/misc/wolfson_control/headphone_left
+echo $headphone_right > /sys/class/misc/wolfson_control/headphone_right
+echo $stereo_expansion > /sys/class/misc/wolfson_control/stereo_expansion
+
+if [ "$eq_selection" == "0" ];
+then
+case "$eq_preset" in
+  0)
+    echo 1 > /sys/class/misc/wolfson_control/switch_eq_headphone
+    echo 0 > /sys/class/misc/wolfson_control/eq_hp_gain_1
+    echo 0 > /sys/class/misc/wolfson_control/eq_hp_gain_2
+    echo 0 > /sys/class/misc/wolfson_control/eq_hp_gain_3
+    echo 0 > /sys/class/misc/wolfson_control/eq_hp_gain_4
+    echo 0 > /sys/class/misc/wolfson_control/eq_hp_gain_5
+    ;;
+  1)
+    echo 1 > /sys/class/misc/wolfson_control/switch_eq_headphone
+    echo 12 > /sys/class/misc/wolfson_control/eq_hp_gain_1
+    echo 8 > /sys/class/misc/wolfson_control/eq_hp_gain_2
+    echo 3 > /sys/class/misc/wolfson_control/eq_hp_gain_3
+    echo -1 > /sys/class/misc/wolfson_control/eq_hp_gain_4
+    echo 1 > /sys/class/misc/wolfson_control/eq_hp_gain_5
+    ;;
+  2)
+    echo 1 > /sys/class/misc/wolfson_control/switch_eq_headphone
+    echo 10 > /sys/class/misc/wolfson_control/eq_hp_gain_1
+    echo 7 > /sys/class/misc/wolfson_control/eq_hp_gain_2
+    echo 0 > /sys/class/misc/wolfson_control/eq_hp_gain_3
+    echo 2 > /sys/class/misc/wolfson_control/eq_hp_gain_4
+    echo 5 > /sys/class/misc/wolfson_control/eq_hp_gain_5
+    ;;
+  3)
+    echo 1 > /sys/class/misc/wolfson_control/switch_eq_headphone
+    echo -5 > /sys/class/misc/wolfson_control/eq_hp_gain_1
+    echo 1 > /sys/class/misc/wolfson_control/eq_hp_gain_2
+    echo 0 > /sys/class/misc/wolfson_control/eq_hp_gain_3
+    echo 4 > /sys/class/misc/wolfson_control/eq_hp_gain_4
+    echo 3 > /sys/class/misc/wolfson_control/eq_hp_gain_5
+    ;;
+  4)
+    echo 1 > /sys/class/misc/wolfson_control/switch_eq_headphone
+    echo 0 > /sys/class/misc/wolfson_control/eq_hp_gain_1
+    echo 0 > /sys/class/misc/wolfson_control/eq_hp_gain_2
+    echo 0 > /sys/class/misc/wolfson_control/eq_hp_gain_3
+    echo -3 > /sys/class/misc/wolfson_control/eq_hp_gain_4
+    echo -5 > /sys/class/misc/wolfson_control/eq_hp_gain_5
+    ;;
+  5)
+    echo 1 > /sys/class/misc/wolfson_control/switch_eq_headphone
+    echo 8 > /sys/class/misc/wolfson_control/eq_hp_gain_1
+    echo 3 > /sys/class/misc/wolfson_control/eq_hp_gain_2
+    echo -2 > /sys/class/misc/wolfson_control/eq_hp_gain_3
+    echo 3 > /sys/class/misc/wolfson_control/eq_hp_gain_4
+    echo 8 > /sys/class/misc/wolfson_control/eq_hp_gain_5
+    ;;
+  6)
+    echo 1 > /sys/class/misc/wolfson_control/switch_eq_headphone
+    echo 12 > /sys/class/misc/wolfson_control/eq_hp_gain_1
+    echo 8 > /sys/class/misc/wolfson_control/eq_hp_gain_2
+    echo 4 > /sys/class/misc/wolfson_control/eq_hp_gain_3
+    echo 2 > /sys/class/misc/wolfson_control/eq_hp_gain_4
+    echo 3 > /sys/class/misc/wolfson_control/eq_hp_gain_5
+    ;;
+  7)
+    echo 1 > /sys/class/misc/wolfson_control/switch_eq_headphone
+    echo 10 > /sys/class/misc/wolfson_control/eq_hp_gain_1
+    echo 2 > /sys/class/misc/wolfson_control/eq_hp_gain_2
+    echo -1 > /sys/class/misc/wolfson_control/eq_hp_gain_3
+    echo 2 > /sys/class/misc/wolfson_control/eq_hp_gain_4
+    echo 10 > /sys/class/misc/wolfson_control/eq_hp_gain_5
+    ;;
+esac;
+else
+    echo 1 > /sys/class/misc/wolfson_control/switch_eq_headphone
+    echo $eq_hp_gain_1 > /sys/class/misc/wolfson_control/eq_hp_gain_1
+    echo $eq_hp_gain_2 > /sys/class/misc/wolfson_control/eq_hp_gain_2
+    echo $eq_hp_gain_3 > /sys/class/misc/wolfson_control/eq_hp_gain_3
+    echo $eq_hp_gain_4 > /sys/class/misc/wolfson_control/eq_hp_gain_4
+    echo $eq_hp_gain_5 > /sys/class/misc/wolfson_control/eq_hp_gain_5
+fi
+
+echo 1 > /sys/class/misc/wolfson_control/switch_eq_headphone
+
+echo $mic_level_general > /sys/class/misc/wolfson_control/mic_level_general
+echo $mic_level_camera > /sys/class/misc/wolfson_control/mic_level_camera
+echo $mic_level_call > /sys/class/misc/wolfson_control/mic_level_call
+echo $switch_fll_tuning > /sys/class/misc/wolfson_control/switch_fll_tuning
+echo $switch_oversampling > /sys/class/misc/wolfson_control/switch_oversampling
+echo $switch_dac_direct > /sys/class/misc/wolfson_control/switch_dac_direct
+echo $switch_mono_downmix > /sys/class/misc/wolfson_control/switch_mono_downmix
+
+
+echo $eq_sp_gain_1 > /sys/class/misc/wolfson_control/eq_sp_gain_1
+echo $eq_sp_gain_2 > /sys/class/misc/wolfson_control/eq_sp_gain_2
+echo $eq_sp_gain_3 > /sys/class/misc/wolfson_control/eq_sp_gain_3
+echo $eq_sp_gain_4 > /sys/class/misc/wolfson_control/eq_sp_gain_4
+echo $eq_sp_gain_5 > /sys/class/misc/wolfson_control/eq_sp_gain_5
+
+echo 1 > /sys/class/misc/wolfson_control/switch_eq_speaker
