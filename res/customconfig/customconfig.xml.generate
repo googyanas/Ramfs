@@ -38,11 +38,10 @@ cat << ENDCONFIG
              <spinnerItem name="Dual core mode" value="2"/> 
              <spinnerItem name="Single core mode" value="1"/> 
        </spinner>
-       <spinner description="This will set the default CPU governor. Default CPU governor will only be set during early stages of booting (before init.d execution) and can be overriden by later scripts or apps." name="Default CPU Governor" action="generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor">
+       <spinner description="This will set the default CPU governor. Default CPU governor will only be set during early stages of booting (before init.d execution) and can be overriden by later scripts or apps." name="Default CPU Governor" action="cpu-gov /tmp/default_scaling_governor">
              <spinnerItem name="pegasusq" value="pegasusq"/> 
              <spinnerItem name="zzmoove" value="zzmoove"/> 
              <spinnerItem name="lulzactiveq" value="lulzactiveq"/> 
-             <spinnerItem name="hotplug" value="hotplug"/> 
        </spinner>
       <spinner description="Set the maximum freqency the CPU scales up to. Default: 1400 MHz." 
                name="CPU max frequency" 
@@ -457,6 +456,129 @@ done
 
     </settingsPane>
 
+    </settingsTab>
+
+
+  <settingsTab name="ZZMoove">
+  
+    <settingsPane description="ZZMoove governor settings. WARNING: Do NOT change anything here unless you (responsibly) know what you are doing."  
+                  name="ZZMoove">
+    </settingsPane>
+
+<settingsPane description="LCDFreq Settings" name="LCDFreq Settings">                  
+                  
+ <spinner description="LCDFreq (Default=Disabled)" name="lcdfreq_enable" action="generic /tmp/zzmoove_lcdfreq_enable">
+             <spinnerItem name="Disabled" value="0"/> 
+             <spinnerItem name="Enabled" value="1"/> 
+ </spinner>
+ 
+     <seekBar  description="LCDFreq kick in cores (Default=0)"
+               name="lcdfreq_kick_in_cores"
+               action="generic /tmp/zzmoove_lcdfreq_kick_in_cores" 
+               unit="" min="0" reversed="false" step="1" max="3"/>
+
+     <seekBar  description="LCDFreq kick in freq (Default=500000)"
+               name="lcdfreq_kick_in_freq"
+               action="generic /tmp/zzmoove_lcdfreq_kick_in_freq" 
+               unit="" min="300000" reversed="false" step="100000" max="900000"/>
+
+     <seekBar  description="LCDFreq kick in down delay (Default=20)"
+               name="lcdfreq_kick_in_down_delay"
+               action="generic /tmp/zzmoove_lcdfreq_kick_in_down_delay" 
+               unit="" min="10" reversed="false" step="10" max="50"/>
+
+     <seekBar  description="LCDFreq kick in up delay (Default=50)"
+               name="lcdfreq_kick_in_up_delay"
+               action="generic /tmp/zzmoove_lcdfreq_kick_in_up_delay" 
+               unit="" min="30" reversed="false" step="10" max="70"/>
+ </settingsPane>
+ 
+ <settingsPane description="Thresholds Settings" name="Thresholds Settings">                  
+
+      <seekBar  description="Up Threshold (Default=70)"
+               name="up_threshold"
+               action="generic /tmp/zzmoove_up_threshold" 
+               unit="" min="60" reversed="false" step="1" max="80"/>
+               
+     <seekBar  description="Down Threshold (Default=52)"
+               name="down_threshold"
+               action="generic /tmp/zzmoove_down_threshold" 
+               unit="" min="40" reversed="false" step="1" max="75"/>
+
+     <seekBar  description="Up Threshold Hotplug cpu1 (Default=68)"
+               name="up_threshold_hotplug1"
+               action="generic /tmp/zzmoove_up_threshold_hotplug1" 
+               unit="" min="55" reversed="false" step="1" max="75"/>
+
+     <seekBar  description="Down Threshold Hotplug cpu1 (Default=55)"
+               name="down_threshold_hotplug1"
+               action="generic /tmp/zzmoove_down_threshold_hotplug1" 
+               unit="" min="45" reversed="false" step="1" max="70"/>
+
+     <seekBar  description="Up Threshold Hotplug cpu2 (Default=68)"
+               name="up_threshold_hotplug2"
+               action="generic /tmp/zzmoove_up_threshold_hotplug2" 
+               unit="" min="55" reversed="false" step="1" max="70"/>
+
+     <seekBar  description="Down Threshold Hotplug cpu2 (Default=55)"
+               name="down_threshold_hotplug2"
+               action="generic /tmp/zzmoove_down_threshold_hotplug2" 
+               unit="" min="45" reversed="false" step="1" max="70"/>
+
+     <seekBar  description="Up Threshold Hotplug cpu3 (Default=68)"
+               name="up_threshold_hotplug3"
+               action="generic /tmp/zzmoove_up_threshold_hotplug3" 
+               unit="" min="55" reversed="false" step="1" max="70"/>
+
+     <seekBar  description="Down Threshold Hotplug cpu3 (Default=55)"
+               name="down_threshold_hotplug3"
+               action="generic /tmp/zzmoove_down_threshold_hotplug3" 
+               unit="" min="45" reversed="false" step="1" max="70"/>
+
+     <seekBar  description="Up Threshold on earlysuspend (Default=90)"
+               name="up_threshold_sleep"
+               action="generic /tmp/zzmoove_up_threshold_sleep" 
+               unit="" min="75" reversed="false" step="1" max="95"/>
+
+     <seekBar  description="Down Threshold on earlysuspend (Default=44)"
+               name="down_threshold_sleep"
+               action="generic /tmp/zzmoove_down_threshold_sleep" 
+               unit="" min="35" reversed="false" step="1" max="60"/>
+
+    </settingsPane>
+
+<settingsPane description="Early Demand Settings" name="Early Demand Settings">
+               
+ <spinner description="Early Demand (Default=Disabled)" name="early_demand" action="generic /tmp/zzmoove_early_demand">
+             <spinnerItem name="Disabled" value="0"/> 
+             <spinnerItem name="Enabled" value="1"/> 
+ </spinner>
+ 
+     <seekBar  description="Grad Up Threshold (Default=25)"
+               name="grad_up_threshold"
+               action="generic /tmp/zzmoove_grad_up_threshold" 
+               unit="" min="15" reversed="false" step="5" max="95"/>
+</settingsPane>
+
+<settingsPane description="Other Settings" name="Other Settings">
+ 
+ <spinner description="Ignore Nice Load (Default=Disabled)" name="ignore_nice_load" action="generic /tmp/zzmoove_ignore_nice_load">
+             <spinnerItem name="Disabled" value="0"/> 
+             <spinnerItem name="Enabled" value="1"/> 
+ </spinner>
+
+     <seekBar  description="Smooth Up (Default=75)"
+               name="smooth_up"
+               action="generic /tmp/zzmoove_smooth_up" 
+               unit="" min="65" reversed="false" step="1" max="85"/>
+
+     <seekBar  description="Smooth Up on earlysuspend (Default=100)"
+               name="smooth_up_sleep"
+               action="generic /tmp/zzmoove_smooth_up_sleep" 
+               unit="" min="85" reversed="false" step="1" max="100"/>
+
+    </settingsPane>
+    
     </settingsTab>
     
   <settingsTab name="Dualboot">

@@ -181,3 +181,35 @@ echo $mif_slice_2_volt > /sys/devices/system/abb/mif/mif_slice_2_volt
 
 echo $int_slice_1_volt > /sys/devices/system/abb/int/int_slice_1_volt
 echo $int_slice_2_volt > /sys/devices/system/abb/int/int_slice_2_volt
+
+##### CPU settings #####
+
+  if [ -f $2 ];then
+     if "$default_scaling_governor" == "zzmoove";then
+        echo "zzmoove" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+        echo $zzmoove_lcdfreq_enable > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_enable
+        echo $zzmoove_lcdfreq_kick_in_cores > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_cores
+        echo $zzmoove_lcdfreq_kick_in_down_delay > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_down_delay
+        echo $zzmoove_lcdfreq_kick_in_freq > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_freq
+        echo $zzmoove_lcdfreq_kick_in_up_delay > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_up_delay
+        echo $zzmoove_down_threshold > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold
+        echo $zzmoove_down_threshold_hotplug1 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug1
+        echo $zzmoove_down_threshold_hotplug2 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug2
+        echo $zzmoove_down_threshold_hotplug3 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug3
+        echo $zzmoove_down_threshold_sleep > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_sleep
+        echo $zzmoove_up_threshold > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold
+        echo $zzmoove_up_threshold_hotplug1 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug1
+        echo $zzmoove_up_threshold_hotplug2 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug2
+        echo $zzmoove_up_threshold_hotplug3 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug3
+        echo $zzmoove_early_demand > /sys/devices/system/cpu/cpufreq/zzmoove/early_demand
+        echo $zzmoove_grad_up_threshold > /sys/devices/system/cpu/cpufreq/zzmoove/grad_up_threshold
+        echo $zzmoove_ignore_nice_load > /sys/devices/system/cpu/cpufreq/zzmoove/ignore_nice_load
+        echo $zzmoove_smooth_up > /sys/devices/system/cpu/cpufreq/zzmoove/smooth_up
+        echo $zzmoove_smooth_up_sleep > /sys/devices/system/cpu/cpufreq/zzmoove/smooth_up_sleep
+     fi
+     if "$default_scaling_governor" == "pegasusq";then
+        echo "pegasusq" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+     fi
+     if "$default_scaling_governor" == "lulzactiveq";then
+        echo "lulzactiveq" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+     fi
