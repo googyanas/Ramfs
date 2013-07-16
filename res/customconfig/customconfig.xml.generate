@@ -38,7 +38,7 @@ cat << ENDCONFIG
              <spinnerItem name="Dual core mode" value="2"/> 
              <spinnerItem name="Single core mode" value="1"/> 
        </spinner>
-       <spinner description="This will set the default CPU governor. Default CPU governor will only be set during early stages of booting (before init.d execution) and can be overriden by later scripts or apps." name="Default CPU Governor" action="cpu-gov /tmp/default_scaling_governor">
+       <spinner description="This will set the default CPU governor. Default CPU governor will only be set during early stages of booting (before init.d execution) and can be overriden by later scripts or apps." name="Default CPU Governor" action="cpugov /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor">
              <spinnerItem name="pegasusq" value="pegasusq"/> 
              <spinnerItem name="zzmoove" value="zzmoove"/> 
              <spinnerItem name="lulzactiveq" value="lulzactiveq"/> 
@@ -580,6 +580,287 @@ done
     </settingsPane>
     
     </settingsTab>
+
+  <settingsTab name="PegasusQ">
+  
+    <settingsPane description="PegasusQ governor settings. WARNING: Do NOT change anything here unless you (responsibly) know what you are doing."  
+                  name="PegasusQ">
+    </settingsPane>
+
+<settingsPane description="PegasusQ Settings" name="PegasusQ Settings">                  
+                  
+     <seekBar  description="Cpu up frequency (Default=500000)"
+               name="cpu_up_freq"
+               action="generic /tmp/pegasusq_cpu_up_freq" 
+               unit="" min="400000" reversed="false" step="100000" max="800000"/>
+
+     <seekBar  description="Cpu down frequency (Default=200000)"
+               name="cpu_down_freq"
+               action="generic /tmp/pegasusq_cpu_down_freq" 
+               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+
+     <seekBar  description="Cpu up rate (Default=10)"
+               name="cpu_up_rate"
+               action="generic /tmp/pegasusq_cpu_up_rate" 
+               unit="" min="5" reversed="false" step="1" max="20"/>
+               
+     <seekBar  description="Cpu down rate (Default=20)"
+               name="cpu_down_rate"
+               action="generic /tmp/pegasusq_cpu_down_rate" 
+               unit="" min="10" reversed="false" step="1" max="30"/>
+
+     <seekBar  description="Down differential (Default=5)"
+               name="down_differential"
+               action="generic /tmp/pegasusq_down_differential" 
+               unit="" min="2" reversed="false" step="1" max="10"/>
+
+     <seekBar  description="Frequency step (Default=37)"
+               name="freq_step"
+               action="generic /tmp/pegasusq_freq_step" 
+               unit="" min="30" reversed="false" step="1" max="50"/>
+
+     <seekBar  description="Hotplug frequency 1_1 (Default=500000)"
+               name="hotplug_freq_1_1"
+               action="generic /tmp/pegasusq_hotplug_freq_1_1" 
+               unit="" min="300000" reversed="false" step="100000" max="800000"/>
+
+     <seekBar  description="Hotplug frequency 2_0 (Default=200000)"
+               name="hotplug_freq_2_0"
+               action="generic /tmp/pegasusq_hotplug_freq_2_0" 
+               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+
+     <seekBar  description="Hotplug frequency 2_1 (Default=500000)"
+               name="hotplug_freq_2_1"
+               action="generic /tmp/pegasusq_hotplug_freq_2_1" 
+               unit="" min="300000" reversed="false" step="100000" max="800000"/>
+
+     <seekBar  description="Hotplug frequency 3_0 (Default=200000)"
+               name="hotplug_freq_3_0"
+               action="generic /tmp/pegasusq_hotplug_freq_3_0" 
+               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+
+     <seekBar  description="Hotplug frequency 3_1 (Default=500000)"
+               name="hotplug_freq_3_1"
+               action="generic /tmp/pegasusq_hotplug_freq_3_1" 
+               unit="" min="300000" reversed="false" step="100000" max="800000"/>
+
+     <seekBar  description="Hotplug frequency 4_0 (Default=200000)"
+               name="hotplug_freq_4_0"
+               action="generic /tmp/pegasusq_hotplug_freq_4_0" 
+               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+
+     <seekBar  description="Hotplug rq 1_1 (Default=100)"
+               name="hotplug_rq_1_1"
+               action="generic /tmp/pegasusq_hotplug_rq_1_1" 
+               unit="" min="100" reversed="false" step="100" max="300"/>
+
+     <seekBar  description="Hotplug rq 2_0 (Default=100)"
+               name="hotplug_rq_2_0"
+               action="generic /tmp/pegasusq_hotplug_rq_2_0" 
+               unit="" min="100" reversed="false" step="100" max="300"/>
+
+     <seekBar  description="Hotplug rq 2_1 (Default=200)"
+               name="hotplug_rq_2_1"
+               action="generic /tmp/pegasusq_hotplug_rq_2_1" 
+               unit="" min="200" reversed="false" step="100" max="400"/>
+
+     <seekBar  description="Hotplug rq 3_0 (Default=200)"
+               name="hotplug_rq_3_0"
+               action="generic /tmp/pegasusq_hotplug_rq_3_0" 
+               unit="" min="200" reversed="false" step="100" max="400"/>
+
+     <seekBar  description="Hotplug rq 3_1 (Default=300)"
+               name="hotplug_rq_3_1"
+               action="generic /tmp/pegasusq_hotplug_rq_3_1" 
+               unit="" min="200" reversed="false" step="100" max="400"/>
+
+     <seekBar  description="Hotplug rq 4_0 (Default=300)"
+               name="hotplug_rq_4_0"
+               action="generic /tmp/pegasusq_hotplug_rq_4_0" 
+               unit="" min="200" reversed="false" step="100" max="400"/>
+
+ <spinner description="Ignore Nice Load (Default=Disabled)" name="ignore_nice_load" action="generic /tmp/pegasusq_ignore_nice_load">
+             <spinnerItem name="Disabled" value="0"/> 
+             <spinnerItem name="Enabled" value="1"/> 
+ </spinner>
+
+ <spinner description="IO is Busy (Default=Disabled)" name="io_is_busy" action="generic /tmp/pegasusq_io_is_busy">
+             <spinnerItem name="Disabled" value="0"/> 
+             <spinnerItem name="Enabled" value="1"/> 
+ </spinner>
+
+     <seekBar  description="Sampling down factor (Default=2)"
+               name="sampling_down_factor"
+               action="generic /tmp/pegasusq_sampling_down_factor" 
+               unit="" min="1" reversed="false" step="1" max="5"/>
+
+     <seekBar  description="Sampling rate (Default=50000)"
+               name="sampling_rate"
+               action="generic /tmp/pegasusq_sampling_rate" 
+               unit="" min="30000" reversed="false" step="10000" max="70000"/>
+
+     <seekBar  description="Sampling rate min (Default=10000)"
+               name="sampling_rate_min"
+               action="generic /tmp/pegasusq_sampling_rate_min" 
+               unit="" min="10000" reversed="false" step="10000" max="30000"/>
+
+     <seekBar  description="Up nr cpus (Default=1)"
+               name="up_nr_cpus"
+               action="generic /tmp/pegasusq_up_nr_cpus" 
+               unit="" min="1" reversed="false" step="1" max="3"/>
+
+     <seekBar  description="Up threshold (Default=85)"
+               name="up_threshold"
+               action="generic /tmp/pegasusq_up_threshold" 
+               unit="" min="65" reversed="false" step="5" max="95"/>              
+                                          
+ </settingsPane>
+   
+    </settingsTab>
+
+  <settingsTab name="LulzactiveQ">
+  
+    <settingsPane description="LulzactiveQ governor settings. WARNING: Do NOT change anything here unless you (responsibly) know what you are doing."  
+                  name="LulzactiveQ">
+    </settingsPane>
+
+<settingsPane description="LulzactiveQ Settings" name="LulzactiveQ Settings">                  
+                  
+     <seekBar  description="Cpu down rate (Default=13)"
+               name="cpu_down_rate"
+               action="generic /tmp/lulzactiveq_cpu_down_rate" 
+               unit="" min="10" reversed="false" step="1" max="16"/>
+
+     <seekBar  description="Cpu up rate (Default=13)"
+               name="cpu_up_rate"
+               action="generic /tmp/lulzactiveq_cpu_up_rate" 
+               unit="" min="10" reversed="false" step="1" max="16"/>
+
+     <seekBar  description="Dec cpu load (Default=60)"
+               name="dec_cpu_load"
+               action="generic /tmp/lulzactiveq_dec_cpu_load" 
+               unit="" min="50" reversed="false" step="5" max="70"/>
+               
+     <seekBar  description="Inc cpu load (Default=80)"
+               name="inc_cpu_load"
+               action="generic /tmp/lulzactiveq_inc_cpu_load" 
+               unit="" min="70" reversed="false" step="5" max="90"/>
+
+     <seekBar  description="Down sample time (Default=20000)"
+               name="down_sample_time"
+               action="generic /tmp/lulzactiveq_down_sample_time" 
+               unit="" min="10000" reversed="false" step="5000" max="30000"/>
+
+     <seekBar  description="Up Sample time (Default=40000)"
+               name="up_sample_time"
+               action="generic /tmp/lulzactiveq_up_sample_time" 
+               unit="" min="30000" reversed="false" step="5000" max="50000"/>              
+                                          
+     <seekBar  description="Frequency table (Default=1600000)"
+               name="freq_table"
+               action="generic /tmp/lulzactiveq_freq_table" 
+               unit="" min="1200000" reversed="false" step="100000" max="1600000"/>
+
+     <seekBar  description="Hispeed frequency (Default=1400000)"
+               name="hispeed_freq"
+               action="generic /tmp/lulzactiveq_hispeed_freq" 
+               unit="" min="1000000" reversed="false" step="100000" max="1600000"/>
+
+     <seekBar  description="Hotplug frequency 1_1 (Default=500000)"
+               name="hotplug_freq_1_1"
+               action="generic /tmp/lulzactiveq_hotplug_freq_1_1" 
+               unit="" min="300000" reversed="false" step="100000" max="800000"/>
+
+     <seekBar  description="Hotplug frequency 2_0 (Default=200000)"
+               name="hotplug_freq_2_0"
+               action="generic /tmp/lulzactiveq_hotplug_freq_2_0" 
+               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+
+     <seekBar  description="Hotplug frequency 2_1 (Default=500000)"
+               name="hotplug_freq_2_1"
+               action="generic /tmp/lulzactiveq_hotplug_freq_2_1" 
+               unit="" min="300000" reversed="false" step="100000" max="800000"/>
+
+     <seekBar  description="Hotplug frequency 3_0 (Default=400000)"
+               name="hotplug_freq_3_0"
+               action="generic /tmp/lulzactiveq_hotplug_freq_3_0" 
+               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+
+     <seekBar  description="Hotplug frequency 3_1 (Default=800000)"
+               name="hotplug_freq_3_1"
+               action="generic /tmp/lulzactiveq_hotplug_freq_3_1" 
+               unit="" min="300000" reversed="false" step="100000" max="800000"/>
+
+     <seekBar  description="Hotplug frequency 4_0 (Default=500000)"
+               name="hotplug_freq_4_0"
+               action="generic /tmp/lulzactiveq_hotplug_freq_4_0" 
+               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+
+     <seekBar  description="Hotplug rq 1_1 (Default=200)"
+               name="hotplug_rq_1_1"
+               action="generic /tmp/lulzactiveq_hotplug_rq_1_1" 
+               unit="" min="100" reversed="false" step="100" max="300"/>
+
+     <seekBar  description="Hotplug rq 2_0 (Default=200)"
+               name="hotplug_rq_2_0"
+               action="generic /tmp/lulzactiveq_hotplug_rq_2_0" 
+               unit="" min="100" reversed="false" step="100" max="300"/>
+
+     <seekBar  description="Hotplug rq 2_1 (Default=300)"
+               name="hotplug_rq_2_1"
+               action="generic /tmp/lulzactiveq_hotplug_rq_2_1" 
+               unit="" min="200" reversed="false" step="100" max="400"/>
+
+     <seekBar  description="Hotplug rq 3_0 (Default=300)"
+               name="hotplug_rq_3_0"
+               action="generic /tmp/lulzactiveq_hotplug_rq_3_0" 
+               unit="" min="200" reversed="false" step="100" max="400"/>
+
+     <seekBar  description="Hotplug rq 3_1 (Default=400)"
+               name="hotplug_rq_3_1"
+               action="generic /tmp/lulzactiveq_hotplug_rq_3_1" 
+               unit="" min="200" reversed="false" step="100" max="400"/>
+
+     <seekBar  description="Hotplug rq 4_0 (Default=400)"
+               name="hotplug_rq_4_0"
+               action="generic /tmp/lulzactiveq_hotplug_rq_4_0" 
+               unit="" min="200" reversed="false" step="100" max="400"/>
+
+     <seekBar  description="Hotplug Sampling rate (Default=40000)"
+               name="hotplog_sampling_rate"
+               action="generic /tmp/lulzactiveq_hotplog_sampling_rate" 
+               unit="" min="20000" reversed="false" step="10000" max="50000"/>
+
+ <spinner description="Ignore Nice Load (Default=Disabled)" name="ignore_nice_load" action="generic /tmp/lulzactiveq_ignore_nice_load">
+             <spinnerItem name="Disabled" value="0"/> 
+             <spinnerItem name="Enabled" value="1"/> 
+ </spinner>
+
+     <seekBar  description="Pump down step (Default=1)"
+               name="pump_down_step"
+               action="generic /tmp/lulzactiveq_pump_down_step" 
+               unit="" min="1" reversed="false" step="1" max="3"/>
+
+     <seekBar  description="Pump up step (Default=2)"
+               name="pump_up_step"
+               action="generic /tmp/lulzactiveq_pump_up_step" 
+               unit="" min="1" reversed="false" step="1" max="3"/>
+
+     <seekBar  description="Screen-off max step (Default=15)"
+               name="screen_off_max_step"
+               action="generic /tmp/lulzactiveq_screen_off_max_step" 
+               unit="" min="7" reversed="false" step="1" max="15"/>
+
+     <seekBar  description="Up nr cpus (Default=1)"
+               name="up_nr_cpus"
+               action="generic /tmp/lulzactiveq_up_nr_cpus" 
+               unit="" min="1" reversed="false" step="1" max="3"/>
+
+ </settingsPane>
+   
+    </settingsTab>
+    
+    
     
   <settingsTab name="Dualboot">
     <settingsPane description="Dual-Boot Settings. Warning: No confirmation will be asked for reboot buttons." name="Dual-Boot Settings">
