@@ -288,8 +288,6 @@ done
 
   <settingsTab name="Screen">
     <settingsPane description="Other screen related settings" name="Other Settings">
-       <checkbox description="mDNIe sharpness tweaks from hardcore. Requires reboot to be effective." name="mDNIe Sharpness Tweaks" action="generic01 /tmp/mdniemod" label="mDNIe Sharpness Tweaks"/>
-       <checkbox description="Enable inverting the screen colors by quickly pressing Home button 4 times" name="mDNIe Negative Toggle" action="generic01 /sys/module/gpio_keys/parameters/mdnie_shortcut_enabled" label="mDNIe Negative Toggle"/>
         <spinner description="Set CPU freq boost level when you touch the screen. Lower levels will help with the battery with the cost of UI lags" name="Touch Boost Level" action="generic /sys/class/misc/m0mods/touch_boost_level">
              <spinnerItem name="1200MHz" value="4"/> 
              <spinnerItem name="1000MHz" value="6"/> 
@@ -313,6 +311,240 @@ done
    </settingsPane>
   </settingsTab>
 
+  <settingsTab name="MDNIE">
+
+    <settingsPane description="mobile Digital Natural Image engine control. Samsungs hardware image post-processor controls virtually any image manipulation. All control master switches, if left as delta controls, will negate the sequence setting if checked. Master sequence has SCR and CS enabled by default."
+		  name="Global controls">
+
+      <checkbox  description="Register intercept acts like a hook and will enable catching scenario settings and modifying them through delta controls. If a scenario does not have a setting (register) in its base sequence, then it cannot be modified by the hook."
+                name="Register intercept" 
+                action="generic01 /sys/class/misc/mdnie/hook_intercept"
+                label="Enable register hook"/>
+
+      <checkbox  description="Enabling the master sequence will disable and ignore Samsungs profiles and scenarios, the ROM controls will be disabled."
+                name="Master sequence" 
+                action="generic01 /sys/class/misc/mdnie/sequence_intercept"
+                label="Enable master sequence"/>
+
+    </settingsPane>
+
+
+    <settingsPane description="Uses mDNIe to bypass the backlight driver brightness and decrease brightness by reducing luminance on the the channel RGB values. It allows to reduce brightness beyond the stock minimum."
+		  name="Digital screen brightness">
+
+      <seekBar  description="The amount of luminance to be shaved off from the colour channel components."
+		name="Brightness reduction"
+                action="generic /sys/class/misc/mdnie/brightness_reduction"
+                unit="" min="0" reversed="false" step="1" max="128"/>
+
+      <seekBar  description="The stock backlight driver ignores brightness values below 20 (0-255) and values below that point do not have any effect on brightness. The takeover point is the point in the brightness curve where the digital brightness reduction takes effect. The brightness reduction is weighted linearly from full configured value to zero on the range of zero brigtness to the takeover point. If the takeover point is beyond 20, then both hardware and digital brightness reduction can take place. This can help with having a less abrupt brightness curve caused by the digital reduction."
+		name="Takeover point"
+                action="generic /sys/class/misc/mdnie/brightness_takeover_point"
+                unit="" min="0" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Positive delta to be applied on top system brightness. Used only for the digital reduction logic during stock ROM auto-brightness activation, can be used to brighten back up the reduction value by shifting the interpreted brightness value without sacrificing minimum brightness in manual mode."
+		name="Auto-brightness input delta"
+                action="generic /sys/class/misc/mdnie/brightness_input_delta"
+                unit="" min="0" reversed="false" step="1" max="64"/>
+
+    </settingsPane>
+
+    <settingsPane description="Work exclusively on the stock video player."
+		  name="DNR and HDR control">
+
+      <checkbox  description="" 
+                name="Toggle digital noise reduction" 
+                action="generic01 /sys/class/misc/mdnie/hook_control/s_digital_noise_reduction"
+                label="Toggle digital noise reduction for video playback"/>
+
+      <checkbox  description="" 
+                name="Toggle high dynamic range" 
+                action="generic01 /sys/class/misc/mdnie/hook_control/s_high_dynamic_range"
+                label="Toggle HDR for video playback"/>
+
+    </settingsPane>
+
+    <settingsPane description="Chroma saturation works in the HSL colour space, modifying saturation will dilute the hue with white or darken with black. Variations in chroma are achieved by adding different amounts of a neutral gray of the same value as the color you want to alter."
+		  name="Chroma saturation control">
+
+      <checkbox  description="Factory settings override the controls." 
+                name="Chroma saturation factory settings" 
+                action="generic01 /sys/class/misc/mdnie/hook_control/s_factory_chroma_saturation"
+                label="Toggle factory settings"/>
+
+      <seekBar  description="Saturation weight/multipliers for RGB/YCM chroma gains"
+		name="Chroma saturation weight"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_weight"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Red gain"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_red"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Green gain"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_green"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Blue gain"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_blue"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Yellow gain"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_yellow"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Cyan gain"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_cyan"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+      <seekBar  description=""
+		name="Magenta gain"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_magenta"
+                unit="" min="-16" reversed="false" step="1" max="32"/>
+
+    </settingsPane>
+
+    <settingsPane description="Changes white colour temperature"
+		  name="White colour temperature control">
+
+      <checkbox  description="" 
+                name="Colour temperature master switch" 
+                action="generic01 /sys/class/misc/mdnie/hook_control/s_MCM"
+                label="Toggle colour temperature control"/>
+
+      <seekBar  description="Starting point is 6500K."
+		name="Colour temperature"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/mcm_temperature"
+                unit="00K" min="-20" reversed="false" step="1" max="20"/>
+
+    </settingsPane>
+
+    <settingsPane description="The controls is divided in 8 channels, RGB, YCM, W and K. SCR controls are RGB modifiers on each of the controls altering the primary luminosities on that channel."
+		  name="White colour balance">
+
+      <seekBar  description="Red in white"
+		name="Red"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_white_red"
+                unit="" min="-64" reversed="false" step="1" max="20"/>
+
+      <seekBar  description="Green in white"
+		name="Green"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_white_green"
+                unit="" min="-64" reversed="false" step="1" max="20"/>
+
+      <seekBar  description="Blue in white"
+		name="Blue"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_white_blue"
+                unit="" min="-64" reversed="false" step="1" max="20"/>
+
+    </settingsPane>
+
+    <settingsPane description=""
+		  name="Primary (RGB) colour channels addends">
+
+      <seekBar  description="Red in red channel"
+		name="Red in red"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_red_red"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Green in red channel"
+		name="Green in red"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_red_green"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Blue in red channel"
+		name="Blue in red"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_red_blue"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Red in green channel"
+		name="Red in green"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_green_red"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Green in green channel"
+		name="Green in green"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_green_green"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Blue in green channel"
+		name="Blue in green"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_green_blue"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Red in blue channel"
+		name="Red in blue"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_blue_red"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Green in blue channel"
+		name="Green in blue"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_blue_green"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Blue in blue channel"
+		name="Blue in blue"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_blue_blue"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+    </settingsPane>
+
+    <settingsPane description=""
+		  name="Secondary (YCM) colour channels addends">
+
+      <seekBar  description="Red in yellow channel"
+		name="Red in yellow"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_yellow_red"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Green in yellow channel"
+		name="Green in yellow"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_yellow_green"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Blue in yellow channel"
+		name="Blue in yellow"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_yellow_blue"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Red in cyan channel"
+		name="Red in cyan"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_cyan_red"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Green in cyan channel"
+		name="Green in cyan"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_cyan_green"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Blue in cyan channel"
+		name="Blue in cyan"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_cyan_blue"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Red in magenta channel"
+		name="Red in magenta"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_magenta_red"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+      <seekBar  description="Green in magenta channel"
+		name="Green in magenta"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_magenta_green"
+                unit="" min="-32" reversed="false" step="1" max="64"/>
+
+      <seekBar  description="Blue in magenta channel"
+		name="Blue in magenta"
+                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_magenta_blue"
+                unit="" min="-64" reversed="false" step="1" max="32"/>
+
+    </settingsPane>
+  </settingsTab>
+    
   <settingsTab name="Zram">
     <settingsPane description="Zram" name="Zram">
       <checkbox description="Changing any ZRAM setting NEEDS A REBOOT to be ACTIVATED !!! For the first time use, you may have to set ZRAM off then on followed by a reboot." name="Zram Switch" action="generic /tmp/zram_switch" label="ZRAM"/>
@@ -331,13 +563,14 @@ done
     
   <settingsTab name="Misc">
     <settingsPane description="Misc Settings" name="Misc Settings">
-      <checkbox description="Enable or Disable Android Logger (needs reboot)" name="Android Logger" action="generic /tmp/logger" label="Android Logger"/>
-
+      <checkbox description="Enable or Disable Android Logger (needs reboot)" name="Android Logger" action="generic /tmp/logger" label="Android Logger"/>      
+      
       <spinner description="This will set the default I/O scheduler for Internal Storage" name="Default I/O Scheduler for Internal Storage" action="iosched_int /tmp/int_scheduler">
              <spinnerItem name="cfq" value="cfq"/>
-             <spinnerItem name="row" value="row"/> 
+             <spinnerItem name="row" value="row"/>
              <spinnerItem name="noop" value="noop"/> 
              <spinnerItem name="deadline" value="deadline"/> 
+             <spinnerItem name="bfq" value="bfq"/>
              <spinnerItem name="sio" value="sio"/> 
              <spinnerItem name="vr" value="vr"/> 
       </spinner>
@@ -351,6 +584,7 @@ done
              <spinnerItem name="row" value="row"/> 
              <spinnerItem name="noop" value="noop"/> 
              <spinnerItem name="deadline" value="deadline"/> 
+             <spinnerItem name="bfq" value="bfq"/>
              <spinnerItem name="sio" value="sio"/> 
              <spinnerItem name="vr" value="vr"/> 
       </spinner>
@@ -366,6 +600,12 @@ done
              <spinnerItem name="Blinking" value="0"/> 
              <spinnerItem name="Fading" value="1"/> 
       </spinner>
+      
+      <seekBar  description="Vibration intensity" 
+                name="Vibration intensity" 
+                action="generic /sys/vibrator/pwm_val"
+                unit="" min="0" reversed="false" step="10" max="100"/>
+
       <seekBar description="AC,CDP,Dock charge currents (default 1000). WARNING: Any setting above 1000mA is very risky for your phone" 
 		name="AC Charge" action="chargecurrent_ac" unit="mA" min="800" reversed="false" step="100" max="1500"/>
       <seekBar description="USB charge current (default 475)" 
@@ -463,6 +703,14 @@ done
   
     <settingsPane description="ZZMoove governor settings. WARNING: Do NOT change anything here unless you (responsibly) know what you are doing."  
                   name="ZZMoove">
+          
+ <spinner description="ZZMoove profile (Default=Balanced)" name="zzmoove_profile" action="generic /tmp/zzmoove_profile">
+             <spinnerItem name="Battery" value="0"/> 
+             <spinnerItem name="Balanced" value="1"/> 
+             <spinnerItem name="Performance" value="2"/> 
+             <spinnerItem name="Custom" value="3"/> 
+ </spinner>          
+          
     </settingsPane>
 
 <settingsPane description="LCDFreq Settings" name="LCDFreq Settings">                  
@@ -485,12 +733,12 @@ done
      <seekBar  description="LCDFreq kick in down delay (Default=20)"
                name="lcdfreq_kick_in_down_delay"
                action="generic /tmp/zzmoove_lcdfreq_kick_in_down_delay" 
-               unit="" min="10" reversed="false" step="10" max="50"/>
+               unit="" min="10" reversed="false" step="1" max="50"/>
 
      <seekBar  description="LCDFreq kick in up delay (Default=50)"
                name="lcdfreq_kick_in_up_delay"
                action="generic /tmp/zzmoove_lcdfreq_kick_in_up_delay" 
-               unit="" min="30" reversed="false" step="10" max="70"/>
+               unit="" min="30" reversed="false" step="1" max="70"/>
  </settingsPane>
  
  <settingsPane description="Thresholds Settings" name="Thresholds Settings">                  
@@ -498,12 +746,12 @@ done
       <seekBar  description="Up Threshold (Default=70)"
                name="up_threshold"
                action="generic /tmp/zzmoove_up_threshold" 
-               unit="" min="60" reversed="false" step="1" max="80"/>
+               unit="" min="60" reversed="false" step="1" max="100"/>
                
      <seekBar  description="Down Threshold (Default=52)"
                name="down_threshold"
                action="generic /tmp/zzmoove_down_threshold" 
-               unit="" min="40" reversed="false" step="1" max="75"/>
+               unit="" min="40" reversed="false" step="1" max="100"/>
 
      <seekBar  description="Up Threshold Hotplug cpu1 (Default=68)"
                name="up_threshold_hotplug1"
@@ -538,7 +786,7 @@ done
      <seekBar  description="Up Threshold on earlysuspend (Default=90)"
                name="up_threshold_sleep"
                action="generic /tmp/zzmoove_up_threshold_sleep" 
-               unit="" min="75" reversed="false" step="1" max="95"/>
+               unit="" min="75" reversed="false" step="1" max="100"/>
 
      <seekBar  description="Down Threshold on earlysuspend (Default=44)"
                name="down_threshold_sleep"
@@ -560,13 +808,56 @@ done
                unit="" min="15" reversed="false" step="5" max="95"/>
 </settingsPane>
 
+<settingsPane description="Sampling Settings" name="Sampling Settings">
+
+     <seekBar  description="Sampling rate (Default=100000)"
+               name="sampling_rate"
+               action="generic /tmp/zzmoove_sampling_rate" 
+               unit="" min="50000" reversed="false" step="10000" max="150000"/>
+               
+     <seekBar  description="Sampling minimum rate (Default=30000)"
+               name="sampling_rate_min"
+               action="generic /tmp/zzmoove_sampling_rate_min" 
+               unit="" min="1000" reversed="false" step="10000" max="50000"/>
+               
+     <seekBar  description="Sampling rate sleep multiplier (Default=2)"
+               name="sampling_rate_sleep_multiplier"
+               action="generic /tmp/zzmoove_sampling_rate_sleep_multiplier" 
+               unit="" min="1" reversed="false" step="1" max="5"/>
+               
+     <seekBar  description="Sampling down factor (Default=1)"
+               name="sampling_down_factor"
+               action="generic /tmp/zzmoove_sampling_down_factor" 
+               unit="" min="0" reversed="false" step="1" max="5"/>
+               
+ <spinner description="Sampling down max momentum (Default=Disable)" name="sampling_down_max_momentum" action="generic /tmp/zzmoove_sampling_down_max_momentum">
+             <spinnerItem name="Disable" value="0"/> 
+             <spinnerItem name="Enable" value="1"/> 
+ </spinner>
+               
+     <seekBar  description="Sampling down momentum sensitivity (Default=50)"
+               name="sampling_down_momentum_sensitivity"
+               action="generic /tmp/zzmoove_sampling_down_momentum_sensitivity" 
+               unit="" min="1" reversed="false" step="1" max="500"/>
+               
+</settingsPane>
+
 <settingsPane description="Other Settings" name="Other Settings">
  
  <spinner description="Ignore Nice Load (Default=Disabled)" name="ignore_nice_load" action="generic /tmp/zzmoove_ignore_nice_load">
              <spinnerItem name="Disabled" value="0"/> 
              <spinnerItem name="Enabled" value="1"/> 
  </spinner>
+ <spinner description="Enable/Disable Hotplug (Default=Enable)" name="disable_hotplug" action="generic /tmp/zzmoove_disable_hotplug">
+             <spinnerItem name="Enable" value="0"/> 
+             <spinnerItem name="Disable" value="1"/> 
+ </spinner>
 
+     <seekBar  description="Hotplug sleep (Default=0)"
+               name="hotplug_sleep"
+               action="generic /tmp/zzmoove_hotplug_sleep" 
+               unit="" min="0" reversed="false" step="1" max="3"/>
+      
      <seekBar  description="Smooth Up (Default=75)"
                name="smooth_up"
                action="generic /tmp/zzmoove_smooth_up" 
@@ -576,7 +867,17 @@ done
                name="smooth_up_sleep"
                action="generic /tmp/zzmoove_smooth_up_sleep" 
                unit="" min="85" reversed="false" step="1" max="100"/>
-
+               
+     <seekBar  description="Frequency step (Default=5)"
+               name="freq_step"
+               action="generic /tmp/zzmoove_freq_step" 
+               unit="" min="1" reversed="false" step="1" max="25"/>
+               
+     <seekBar  description="Frequency step sleep (Default=5)"
+               name="freq_step_sleep"
+               action="generic /tmp/zzmoove_freq_step_sleep" 
+               unit="" min="1" reversed="false" step="1" max="25"/>
+               
     </settingsPane>
     
     </settingsTab>
