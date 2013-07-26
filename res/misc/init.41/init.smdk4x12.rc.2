@@ -78,7 +78,6 @@ on boot
 # mobicore
     mkdir /data/app/mcRegistry 0775 system system
     chmod 0777 /dev/mobicore
-    chown radio system /dev/mobicore
 # mobicore trustlets
     copy /efs/00000000.authtokcont /data/app/mcRegistry/00000000.authtokcont
     chown system system /data/app/mcRegistry/00000000.authtokcont
@@ -266,7 +265,7 @@ on property:sys.boot_completed=1
 # SISO-ANDR_PERF :: END
 
 on property:persist.sys.storage_preload=1
-    mount ext4 /dev/block/mmcblk0p10 /preload nosuid nodev noatime wait ro
+#    mount ext4 /dev/block/mmcblk0p10 /preload nosuid nodev noatime wait ro
     setprop storage.preload.complete 1
 
 on property:persist.sys.storage_preload=0
