@@ -7,5 +7,5 @@ echo "$ext_read_ahead_kb" > /sys/block/mmcblk1/bdi/read_ahead_kb
 	
 fi
 
-
+echo "Scheduler settings applied"
 

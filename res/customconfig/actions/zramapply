@@ -22,4 +22,4 @@ if [ "$zram_switch" == "off" ];then
 fi
 
 
-
+echo "Zram settings applied"
