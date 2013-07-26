@@ -22,7 +22,7 @@ on init
 # ko files for exfat
     insmod /lib/modules/exfat_core.ko
     insmod /lib/modules/exfat_fs.ko
-
+        
 on boot
 
     ifup lo
@@ -60,3 +60,5 @@ on property:service.adb.root=1
     write /sys/class/android_usb/android0/enable 0
     restart adbd
     write /sys/class/android_usb/android0/enable 1
+
+    write /sys/kernel/dyn_fsync/Dyn_fsync_active 0
