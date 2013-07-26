@@ -563,14 +563,15 @@ done
     
   <settingsTab name="Misc">
     <settingsPane description="Misc Settings" name="Misc Settings">
-      <checkbox description="Enable or Disable Android Logger (needs reboot)" name="Android Logger" action="generic /tmp/logger" label="Android Logger"/>      
+      <checkbox description="Enable or Disable Android Logger (needs reboot)" name="Android Logger" action="generic01 /tmp/logger" label="Android Logger"/>      
+      
+      <checkbox description="Dynamic Fsync switch" name="Dynamic Fsync switch" action="generic01 /sys/kernel/dyn_fsync/Dyn_fsync_active" label="Dynamic Fsync"/>      
       
       <spinner description="This will set the default I/O scheduler for Internal Storage" name="Default I/O Scheduler for Internal Storage" action="iosched_int /tmp/int_scheduler">
              <spinnerItem name="cfq" value="cfq"/>
              <spinnerItem name="row" value="row"/>
              <spinnerItem name="noop" value="noop"/> 
              <spinnerItem name="deadline" value="deadline"/> 
-             <spinnerItem name="bfq" value="bfq"/>
              <spinnerItem name="sio" value="sio"/> 
              <spinnerItem name="vr" value="vr"/> 
       </spinner>
@@ -584,7 +585,6 @@ done
              <spinnerItem name="row" value="row"/> 
              <spinnerItem name="noop" value="noop"/> 
              <spinnerItem name="deadline" value="deadline"/> 
-             <spinnerItem name="bfq" value="bfq"/>
              <spinnerItem name="sio" value="sio"/> 
              <spinnerItem name="vr" value="vr"/> 
       </spinner>
@@ -813,7 +813,7 @@ done
      <seekBar  description="Sampling rate (Default=100000)"
                name="sampling_rate"
                action="generic /tmp/zzmoove_sampling_rate" 
-               unit="" min="50000" reversed="false" step="10000" max="150000"/>
+               unit="" min="50000" reversed="false" step="10000" max="200000"/>
                
      <seekBar  description="Sampling minimum rate (Default=30000)"
                name="sampling_rate_min"
