@@ -38,10 +38,13 @@ cat << ENDCONFIG
              <spinnerItem name="Dual core mode" value="2"/> 
              <spinnerItem name="Single core mode" value="1"/> 
        </spinner>
-       <spinner description="This will set the default CPU governor. Default CPU governor will only be set during early stages of booting (before init.d execution) and can be overriden by later scripts or apps." name="Default CPU Governor" action="cpugov /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor">
-             <spinnerItem name="pegasusq" value="pegasusq"/> 
-             <spinnerItem name="zzmoove" value="zzmoove"/> 
-             <spinnerItem name="lulzactiveq" value="lulzactiveq"/> 
+       <spinner description="This will set the default CPU governor. Default CPU governor will only be set during early stages of booting (before init.d execution) and can be overriden by later scripts or apps." name="Default CPU Governor" action="cpugov default_governor">
+             <spinnerItem name="pegasusq" value="0"/> 
+             <spinnerItem name="lulzactiveq" value="1"/> 
+             <spinnerItem name="zzmoove-battery" value="2"/> 
+             <spinnerItem name="zzmoove-balanced" value="3"/> 
+             <spinnerItem name="zzmoove-performance" value="4"/> 
+             <spinnerItem name="zzmoove-custom" value="5"/> 
        </spinner>
       <spinner description="Set the maximum freqency the CPU scales up to. Default: 1400 MHz." 
                name="CPU max frequency" 
@@ -307,7 +310,7 @@ done
              <spinnerItem name="Enabled" value="1"/> 
         </spinner>
       <seekBar description="Touch-To-Wake Delay in seconds (Default is 20ms). Setting Delay to 0 makes Touch-to-Wake permanently active !" 
-		name="Touch-To-Wake Delay" action="touch2wake touchwakedelay" unit=" sec" min="0" reversed="false" step="5" max="60"/>
+		name="Touch-To-Wake Delay" action="touch2wake touchwakedelay" unit=" sec" min="0" reversed="false" step="1" max="60"/>
    </settingsPane>
   </settingsTab>
 
@@ -374,37 +377,37 @@ done
 
       <seekBar  description="Saturation weight/multipliers for RGB/YCM chroma gains"
 		name="Chroma saturation weight"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_weight"
+                action="generic2 /sys/class/misc/mdnie/hook_control/cs_weight"
                 unit="" min="-16" reversed="false" step="1" max="32"/>
 
       <seekBar  description=""
 		name="Red gain"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_red"
+                action="generic2 /sys/class/misc/mdnie/hook_control/cs_red"
                 unit="" min="-16" reversed="false" step="1" max="32"/>
 
       <seekBar  description=""
 		name="Green gain"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_green"
+                action="generic2 /sys/class/misc/mdnie/hook_control/cs_green"
                 unit="" min="-16" reversed="false" step="1" max="32"/>
 
       <seekBar  description=""
 		name="Blue gain"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_blue"
+                action="generic2 /sys/class/misc/mdnie/hook_control/cs_blue"
                 unit="" min="-16" reversed="false" step="1" max="32"/>
 
       <seekBar  description=""
 		name="Yellow gain"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_yellow"
+                action="generic2 /sys/class/misc/mdnie/hook_control/cs_yellow"
                 unit="" min="-16" reversed="false" step="1" max="32"/>
 
       <seekBar  description=""
 		name="Cyan gain"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_cyan"
+                action="generic2 /sys/class/misc/mdnie/hook_control/cs_cyan"
                 unit="" min="-16" reversed="false" step="1" max="32"/>
 
       <seekBar  description=""
 		name="Magenta gain"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/cs_magenta"
+                action="generic2 /sys/class/misc/mdnie/hook_control/cs_magenta"
                 unit="" min="-16" reversed="false" step="1" max="32"/>
 
     </settingsPane>
@@ -419,7 +422,7 @@ done
 
       <seekBar  description="Starting point is 6500K."
 		name="Colour temperature"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/mcm_temperature"
+                action="generic2 /sys/class/misc/mdnie/hook_control/mcm_temperature"
                 unit="00K" min="-20" reversed="false" step="1" max="20"/>
 
     </settingsPane>
@@ -429,17 +432,17 @@ done
 
       <seekBar  description="Red in white"
 		name="Red"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_white_red"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_white_red"
                 unit="" min="-64" reversed="false" step="1" max="20"/>
 
       <seekBar  description="Green in white"
 		name="Green"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_white_green"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_white_green"
                 unit="" min="-64" reversed="false" step="1" max="20"/>
 
       <seekBar  description="Blue in white"
 		name="Blue"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_white_blue"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_white_blue"
                 unit="" min="-64" reversed="false" step="1" max="20"/>
 
     </settingsPane>
@@ -449,47 +452,47 @@ done
 
       <seekBar  description="Red in red channel"
 		name="Red in red"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_red_red"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_red_red"
                 unit="" min="-64" reversed="false" step="1" max="32"/>
 
       <seekBar  description="Green in red channel"
 		name="Green in red"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_red_green"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_red_green"
                 unit="" min="-32" reversed="false" step="1" max="64"/>
 
       <seekBar  description="Blue in red channel"
 		name="Blue in red"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_red_blue"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_red_blue"
                 unit="" min="-32" reversed="false" step="1" max="64"/>
 
       <seekBar  description="Red in green channel"
 		name="Red in green"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_green_red"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_green_red"
                 unit="" min="-32" reversed="false" step="1" max="64"/>
 
       <seekBar  description="Green in green channel"
 		name="Green in green"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_green_green"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_green_green"
                 unit="" min="-64" reversed="false" step="1" max="32"/>
 
       <seekBar  description="Blue in green channel"
 		name="Blue in green"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_green_blue"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_green_blue"
                 unit="" min="-32" reversed="false" step="1" max="64"/>
 
       <seekBar  description="Red in blue channel"
 		name="Red in blue"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_blue_red"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_blue_red"
                 unit="" min="-32" reversed="false" step="1" max="64"/>
 
       <seekBar  description="Green in blue channel"
 		name="Green in blue"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_blue_green"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_blue_green"
                 unit="" min="-32" reversed="false" step="1" max="64"/>
 
       <seekBar  description="Blue in blue channel"
 		name="Blue in blue"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_blue_blue"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_blue_blue"
                 unit="" min="-64" reversed="false" step="1" max="32"/>
 
     </settingsPane>
@@ -499,47 +502,47 @@ done
 
       <seekBar  description="Red in yellow channel"
 		name="Red in yellow"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_yellow_red"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_yellow_red"
                 unit="" min="-64" reversed="false" step="1" max="32"/>
 
       <seekBar  description="Green in yellow channel"
 		name="Green in yellow"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_yellow_green"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_yellow_green"
                 unit="" min="-64" reversed="false" step="1" max="32"/>
 
       <seekBar  description="Blue in yellow channel"
 		name="Blue in yellow"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_yellow_blue"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_yellow_blue"
                 unit="" min="-32" reversed="false" step="1" max="64"/>
 
       <seekBar  description="Red in cyan channel"
 		name="Red in cyan"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_cyan_red"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_cyan_red"
                 unit="" min="-32" reversed="false" step="1" max="64"/>
 
       <seekBar  description="Green in cyan channel"
 		name="Green in cyan"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_cyan_green"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_cyan_green"
                 unit="" min="-64" reversed="false" step="1" max="32"/>
 
       <seekBar  description="Blue in cyan channel"
 		name="Blue in cyan"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_cyan_blue"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_cyan_blue"
                 unit="" min="-64" reversed="false" step="1" max="32"/>
 
       <seekBar  description="Red in magenta channel"
 		name="Red in magenta"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_magenta_red"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_magenta_red"
                 unit="" min="-64" reversed="false" step="1" max="32"/>
 
       <seekBar  description="Green in magenta channel"
 		name="Green in magenta"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_magenta_green"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_magenta_green"
                 unit="" min="-32" reversed="false" step="1" max="64"/>
 
       <seekBar  description="Blue in magenta channel"
 		name="Blue in magenta"
-                action="generic-mdnie B /sys/class/misc/mdnie/hook_control/scr_magenta_blue"
+                action="generic2 /sys/class/misc/mdnie/hook_control/scr_magenta_blue"
                 unit="" min="-64" reversed="false" step="1" max="32"/>
 
     </settingsPane>
@@ -702,15 +705,7 @@ done
   <settingsTab name="ZZMoove">
   
     <settingsPane description="ZZMoove governor settings. WARNING: Do NOT change anything here unless you (responsibly) know what you are doing."  
-                  name="ZZMoove">
-          
- <spinner description="ZZMoove profile (Default=Balanced)" name="zzmoove_profile" action="generic /tmp/zzmoove_profile">
-             <spinnerItem name="Battery" value="0"/> 
-             <spinnerItem name="Balanced" value="1"/> 
-             <spinnerItem name="Performance" value="2"/> 
-             <spinnerItem name="Custom" value="3"/> 
- </spinner>          
-          
+                  name="ZZMoove">          
     </settingsPane>
 
 <settingsPane description="LCDFreq Settings" name="LCDFreq Settings">                  
