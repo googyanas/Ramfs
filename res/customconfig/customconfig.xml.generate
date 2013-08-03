@@ -1156,8 +1156,6 @@ done
    
     </settingsTab>
     
-    
-    
   <settingsTab name="Dualboot">
     <settingsPane description="Dual-Boot Settings. Warning: No confirmation will be asked for reboot buttons." name="Dual-Boot Settings">
       <button description="Reboot into 2ndROM Utils which let you configure, clone or backup the 2ndROM" name="Reboot into 2ndROM Utils" action="reboot-into 0" label="Reboot into 2ndROM Utils"/>
@@ -1173,5 +1171,22 @@ done
       <button description="This button will simply flash the kernel to the recovery partition and you will have 2ndROM Utils as your 3-button combo recovery" name="Hijack Recovery" action="hijack-recovery" label="Hijack Recovery"/>
     </settingsPane>
   </settingsTab>
+  
+  <settingsTab name="PROFILES">
+    <settingsPane description="For the first time use, the default profiles are exacly the same. You have to edit STWeaks settings and save them to the matching profile. Once you have your profiles correctly set, you can choose the active profile then apply its settings. IMPORTANT: The applied profile will not be shown in STWeaks until you restart STWeaks." name="Active profile settings">
+      <spinner description="" name="Active profile" action="activeprofile">
+             <spinnerItem name="Battery" value="battery"/> 
+             <spinnerItem name="Balanced (Default)" value="balanced"/> 
+             <spinnerItem name="Performance" value="performance"/> 
+      </spinner>
+      <button description="Please apply choosen active profile before activating it" name="Activate profile" action="applyprofile" label="Activate profile"/>
+    </settingsPane>
+    <settingsPane description="" name="Save current settings to :">
+      <button description="" name="Battery" action="saveprofile 0" label="Battery profile"/>
+      <button description="" name="Balanced" action="saveprofile 1" label="Balanced profile"/>
+      <button description="" name="Performance" action="saveprofile 2" label="Performance profile"/>  
+    </settingsPane>
+  </settingsTab>  
+  
 </settingsRoot>
 ENDCONFIG
