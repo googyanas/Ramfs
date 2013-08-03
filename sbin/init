@@ -123,9 +123,15 @@ SAMMY42=0
 
 if [ "$CM101" == 1 ];
 then
-  echo 7 > /proc/sys/kernel/rom_feature_set
-#  mv -f /lib/modules/dhd_cm.ko /lib/modules/dhd.ko
-  mv -f /res/misc/init.cm10.1/* /
+   if busybox grep -q 1 /sys/class/power_supply/battery/batt_lp_charging ; then
+     echo 0 > /proc/sys/kernel/rom_feature_set
+     cp -f /res/misc/init.cm10.1/lpm.rc init.rc
+     rm -f init.smdk4x12.rc
+   else
+     echo 7 > /proc/sys/kernel/rom_feature_set
+#    mv -f /lib/modules/dhd_cm.ko /lib/modules/dhd.ko
+     mv -f /res/misc/init.cm10.1/* /
+   fi
 else
   if [ "$CM10" == 1 ];
   then
@@ -138,8 +144,14 @@ else
       echo 6 > /proc/sys/kernel/rom_feature_set
       mv -f /res/misc/init.42/* /
     else
-      echo 2 > /proc/sys/kernel/rom_feature_set
-      mv -f /res/misc/init.41/* /
+   if busybox grep -q 1 /sys/class/power_supply/battery/batt_lp_charging ; then
+     echo 0 > /proc/sys/kernel/rom_feature_set
+     cp -f /res/misc/init.41/lpm.rc init.rc
+     rm -f init.smdk4x12.rc
+   else
+     echo 2 > /proc/sys/kernel/rom_feature_set
+     mv -f /res/misc/init.41/* /
+   fi
     fi
   fi
 fi
