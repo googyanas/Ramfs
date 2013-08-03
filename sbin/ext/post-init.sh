@@ -5,18 +5,21 @@
 #exec >>/data/user.log
 #exec 2>&1
 
-mkdir /data/.siyah
-chmod 777 /data/.siyah
+mkdir /data/.googy
+chmod 777 /data/.googy
 
 . /res/customconfig/customconfig-helper
 
 ccxmlsum=`md5sum /res/customconfig/customconfig.xml | awk '{print $1}'`
-if [ "a${ccxmlsum}" != "a`cat /data/.siyah/.ccxmlsum`" ];
+if [ "a${ccxmlsum}" != "a`cat /data/.googy/.ccxmlsum`" ];
 then
-  rm -f /data/.siyah/*.profile
-  echo ${ccxmlsum} > /data/.siyah/.ccxmlsum
+  rm -f /data/.googy/*.profile
+  echo ${ccxmlsum} > /data/.googy/.ccxmlsum
 fi
-[ ! -f /data/.siyah/default.profile ] && cp /res/customconfig/default.profile /data/.siyah
+[ ! -f /data/.googy/default.profile ] && cp /res/customconfig/default.profile /data/.googy
+[ ! -f /data/.googy/battery.profile ] && cp /res/customconfig/battery.profile /data/.googy
+[ ! -f /data/.googy/balanced.profile ] && cp /res/customconfig/balanced.profile /data/.googy
+[ ! -f /data/.googy/performance.profile ] && cp /res/customconfig/performance.profile /data/.googy
 
 read_defaults
 read_config
