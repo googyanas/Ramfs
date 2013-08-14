@@ -124,7 +124,6 @@ if [ "$logger" == "off" ];then
   echo 0 > /sys/module/xt_qtaguid/parameters/debug_mask
 fi
 
-/sbin/tinyplay /sbin/silence.wav
 
 # boeffla sound
 #echo "1" > /sys/class/misc/boeffla_sound/boeffla_sound
@@ -161,11 +160,12 @@ mount -o remount,ro /
 /sbin/busybox sh /sbin/ext/efs-backup.sh
 ) &
 
+/sbin/tinyplay /sbin/silence.wav -D 0 -d 0 -p 880
+
 # apply STweaks defaults
 export CONFIG_BOOTING=1
 /res/uci.sh apply
 export CONFIG_BOOTING=
-
 
 ##### init scripts #####
 /sbin/busybox sh /sbin/ext/run-init-scripts.sh
@@ -398,6 +398,10 @@ case "$default_governor" in
     ;;
 esac;
 
+#	while ! /sbin/busybox pgrep android.process.acore ; do
+#	  /sbin/busybox sleep 1
+#	done
+#	/sbin/busybox sleep 5
 
 if [ "$soundengine" == "wolfson" ];then
 
