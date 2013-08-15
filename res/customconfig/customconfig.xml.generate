@@ -190,7 +190,7 @@ done
   </settingsTab>
 
   <settingsTab name="Sound Engine">
-    <settingsPane description="Sound Engine" name="Sound Engine">
+    <settingsPane description="Sound Engine. IMPORTANT : For the changes to be fully applied, please close any active media player before applying your sound engine selection !!!" name="Sound Engine">
 
         <spinner description="Select default Sound Engine" name="Default Sound Engine" action="activesoundengine soundengine">
              <spinnerItem name="Stock" value="stock"/> 
@@ -1019,8 +1019,8 @@ done
 <settingsPane description="Other Settings" name="Other Settings">
  
  <spinner description="Legacy mode (Default=Enabled)" name="legacy_mode" action="generic /tmp/zzmoove_legacy_mode">
-             <spinnerItem name="Disabled" value="0"/> 
-             <spinnerItem name="Enabled" value="1"/> 
+             <spinnerItem name="Disabled" value="1"/> 
+             <spinnerItem name="Enabled" value="0"/> 
  </spinner>
  <spinner description="Ignore Nice Load (Default=Disabled)" name="ignore_nice_load" action="generic /tmp/zzmoove_ignore_nice_load">
              <spinnerItem name="Disabled" value="0"/> 

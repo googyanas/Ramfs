@@ -409,9 +409,11 @@ if [ "$soundengine" == "wolfson" ];then
   echo 1 > /sys/class/misc/wolfson_control/switch_master
   
     echo "$switch_eq_speaker" > /sys/class/misc/wolfson_control/switch_eq_speaker
+    echo "$eq_sp_gain_1" > /sys/class/misc/wolfson_control/eq_sp_gain_1
     echo "$eq_sp_gain_2" > /sys/class/misc/wolfson_control/eq_sp_gain_2
     echo "$eq_sp_gain_3" > /sys/class/misc/wolfson_control/eq_sp_gain_3
     echo "$eq_sp_gain_4" > /sys/class/misc/wolfson_control/eq_sp_gain_4
+    echo "$eq_sp_gain_5" > /sys/class/misc/wolfson_control/eq_sp_gain_5
     echo "$speaker_left" > /sys/class/misc/wolfson_control/speaker_left
     echo "$speaker_right" > /sys/class/misc/wolfson_control/speaker_right
     echo "$speaker_boost_level" > /sys/class/misc/wolfson_control/speaker_boost_level
