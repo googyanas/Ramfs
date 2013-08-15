@@ -125,6 +125,7 @@ SAMMY42=0
 
 if [ "$CM101" == 1 ];
 then
+echo "cm101" > /cm101.ggy;
    if busybox grep -q 1 /sys/class/power_supply/battery/batt_lp_charging ; then
      echo 0 > /proc/sys/kernel/rom_feature_set
      cp -f /res/misc/init.cm10.1/lpm.rc init.rc
@@ -132,10 +133,11 @@ then
    else
      echo 7 > /proc/sys/kernel/rom_feature_set
 #    mv -f /lib/modules/dhd_cm.ko /lib/modules/dhd.ko
-	if [ "$CM102" == 1 ];
+	if [ -f /system/framework/voip-common.jar ];
 	then
+	  echo "cm102" > /cm102.ggy;
 	  mv -f /res/misc/init.cm10.2/* /
-	  mv /innt.2 /innt
+	  CM102=1
 	else
 	  mv -f /res/misc/init.cm10.1/* /
 	fi
@@ -143,15 +145,18 @@ then
 else
   if [ "$CM10" == 1 ];
   then
+    echo "cm10" > /cm10.ggy;
     echo 3 > /proc/sys/kernel/rom_feature_set
 #    mv -f /lib/modules/dhd_cm.ko /lib/modules/dhd.ko
     mv -f /res/misc/init.cm10/* /
   else
     if [ "$SAMMY42" == 1 ];
     then
+      echo "sammy42" > /sammy42.ggy;
       echo 6 > /proc/sys/kernel/rom_feature_set
       mv -f /res/misc/init.42/* /
     else
+   echo "sammy41" > /sammy41.ggy;
    if busybox grep -q 1 /sys/class/power_supply/battery/batt_lp_charging ; then
      echo 0 > /proc/sys/kernel/rom_feature_set
      cp -f /res/misc/init.41/lpm.rc init.rc
@@ -168,6 +173,10 @@ if [ "$SECONDROM" == "1" ];then
   mv /init.smdk4x12.rc.2 /init.smdk4x12.rc
   mv /init.rc.2 /init.rc
   mv /fstab.smdk4x12.2 /fstab.smdk4x12
+	if [ "$CM102" == 1 ];
+	then
+	  mv /innt.2 /innt
+	fi
 else
   rm -f /init.rc.2 /init.smdk4x12.rc.2 /fstab.smdk4x12.2
 fi
