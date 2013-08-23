@@ -280,10 +280,6 @@ case "$default_governor" in
         echo "1" > /sys/devices/system/cpu/cpufreq/zzmoove/freq_step_sleep
         echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/disable_hotplug
         echo "1" > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_sleep
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/legacy_mode
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_idle_threshold
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_block_cycles
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/disable_hotplug_sleep        
     ;;
   3)	  
         echo "zzmoove" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -296,11 +292,17 @@ case "$default_governor" in
         echo "55" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug1
         echo "55" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug2
         echo "55" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug3
+        echo $zzmoove_down_threshold_hotplug_freq1 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug_freq1
+        echo $zzmoove_down_threshold_hotplug_freq2 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug_freq2
+        echo $zzmoove_down_threshold_hotplug_freq3 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug_freq3
         echo "44" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_sleep
         echo "70" > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold
         echo "68" > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug1
         echo "68" > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug2
         echo "68" > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug3
+        echo $zzmoove_up_threshold_hotplug_freq1 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug_freq1
+        echo $zzmoove_up_threshold_hotplug_freq2 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug_freq2
+        echo $zzmoove_up_threshold_hotplug_freq3 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug_freq3
         echo "90" > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_sleep
         echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/early_demand
         echo "25" > /sys/devices/system/cpu/cpufreq/zzmoove/grad_up_threshold
@@ -317,10 +319,10 @@ case "$default_governor" in
         echo "5" > /sys/devices/system/cpu/cpufreq/zzmoove/freq_step_sleep
         echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/disable_hotplug
         echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_sleep
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/legacy_mode
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_idle_threshold
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_block_cycles
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/disable_hotplug_sleep        
+        echo $zzmoove_legacy_mode > /sys/devices/system/cpu/cpufreq/zzmoove/legacy_mode
+        echo $zzmoove_hotplug_idle_threshold > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_idle_threshold
+        echo $zzmoove_hotplug_block_cycles > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_block_cycles
+        echo $zzmoove_disable_hotplug_sleep > /sys/devices/system/cpu/cpufreq/zzmoove/disable_hotplug_sleep
      ;;
    4)   
         echo "zzmoove" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -333,11 +335,17 @@ case "$default_governor" in
         echo "25" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug1
         echo "35" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug2
         echo "45" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug3
+        echo $zzmoove_down_threshold_hotplug_freq1 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug_freq1
+        echo $zzmoove_down_threshold_hotplug_freq2 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug_freq2
+        echo $zzmoove_down_threshold_hotplug_freq3 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug_freq3
         echo "55" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_sleep
         echo "60" > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold
         echo "65" > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug1
         echo "75" > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug2
         echo "85" > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug3
+        echo $zzmoove_up_threshold_hotplug_freq1 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug_freq1
+        echo $zzmoove_up_threshold_hotplug_freq2 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug_freq2
+        echo $zzmoove_up_threshold_hotplug_freq3 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug_freq3
         echo "100" > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_sleep
         echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/early_demand
         echo "25" > /sys/devices/system/cpu/cpufreq/zzmoove/grad_up_threshold
@@ -354,10 +362,10 @@ case "$default_governor" in
         echo "1" > /sys/devices/system/cpu/cpufreq/zzmoove/freq_step_sleep
         echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/disable_hotplug
         echo "1" > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_sleep
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/legacy_mode
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_idle_threshold
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_block_cycles
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/disable_hotplug_sleep        
+        echo $zzmoove_legacy_mode > /sys/devices/system/cpu/cpufreq/zzmoove/legacy_mode
+        echo $zzmoove_hotplug_idle_threshold > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_idle_threshold
+        echo $zzmoove_hotplug_block_cycles > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_block_cycles
+        echo $zzmoove_disable_hotplug_sleep > /sys/devices/system/cpu/cpufreq/zzmoove/disable_hotplug_sleep
     ;;
   5)  
         echo "zzmoove" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -370,11 +378,17 @@ case "$default_governor" in
         echo $zzmoove_down_threshold_hotplug1 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug1
         echo $zzmoove_down_threshold_hotplug2 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug2
         echo $zzmoove_down_threshold_hotplug3 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug3
+        echo $zzmoove_down_threshold_hotplug_freq1 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug_freq1
+        echo $zzmoove_down_threshold_hotplug_freq2 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug_freq2
+        echo $zzmoove_down_threshold_hotplug_freq3 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug_freq3
         echo $zzmoove_down_threshold_sleep > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_sleep
         echo $zzmoove_up_threshold > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold
         echo $zzmoove_up_threshold_hotplug1 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug1
         echo $zzmoove_up_threshold_hotplug2 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug2
         echo $zzmoove_up_threshold_hotplug3 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug3
+        echo $zzmoove_up_threshold_hotplug_freq1 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug_freq1
+        echo $zzmoove_up_threshold_hotplug_freq2 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug_freq2
+        echo $zzmoove_up_threshold_hotplug_freq3 > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_hotplug_freq3
         echo $zzmoove_up_threshold_sleep > /sys/devices/system/cpu/cpufreq/zzmoove/up_threshold_sleep
         echo $zzmoove_early_demand > /sys/devices/system/cpu/cpufreq/zzmoove/early_demand
         echo $zzmoove_grad_up_threshold > /sys/devices/system/cpu/cpufreq/zzmoove/grad_up_threshold
@@ -394,7 +408,7 @@ case "$default_governor" in
         echo $zzmoove_legacy_mode > /sys/devices/system/cpu/cpufreq/zzmoove/legacy_mode
         echo $zzmoove_hotplug_idle_threshold > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_idle_threshold
         echo $zzmoove_hotplug_block_cycles > /sys/devices/system/cpu/cpufreq/zzmoove/hotplug_block_cycles
-        echo $zzmoove_disable_hotplug_sleep > /sys/devices/system/cpu/cpufreq/zzmoove/disable_hotplug_sleep        
+        echo $zzmoove_disable_hotplug_sleep > /sys/devices/system/cpu/cpufreq/zzmoove/disable_hotplug_sleep
     ;;
 esac;
 
