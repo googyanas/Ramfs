@@ -935,7 +935,7 @@ done
      <seekBar  description="Up Threshold Hotplug cpu1 (Default=68)"
                name="up_threshold_hotplug1"
                action="generic /tmp/zzmoove_up_threshold_hotplug1" 
-               unit="" min="55" reversed="false" step="1" max="75"/>
+               unit="" min="55" reversed="false" step="1" max="100"/>
 
      <seekBar  description="Down Threshold Hotplug cpu1 (Default=55)"
                name="down_threshold_hotplug1"
@@ -945,7 +945,7 @@ done
      <seekBar  description="Up Threshold Hotplug cpu2 (Default=68)"
                name="up_threshold_hotplug2"
                action="generic /tmp/zzmoove_up_threshold_hotplug2" 
-               unit="" min="55" reversed="false" step="1" max="70"/>
+               unit="" min="55" reversed="false" step="1" max="100"/>
 
      <seekBar  description="Down Threshold Hotplug cpu2 (Default=55)"
                name="down_threshold_hotplug2"
@@ -955,7 +955,7 @@ done
      <seekBar  description="Up Threshold Hotplug cpu3 (Default=68)"
                name="up_threshold_hotplug3"
                action="generic /tmp/zzmoove_up_threshold_hotplug3" 
-               unit="" min="55" reversed="false" step="1" max="70"/>
+               unit="" min="55" reversed="false" step="1" max="100"/>
 
      <seekBar  description="Down Threshold Hotplug cpu3 (Default=55)"
                name="down_threshold_hotplug3"
