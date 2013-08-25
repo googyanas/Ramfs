@@ -28,9 +28,9 @@ on init
     insmod /system/lib/modules/Si4709_driver.ko
 
 on fs
+    exec /sbin/mount_system.sh
     mount_all /fstab.smdk4x12
-    exec /sbin/ext/db-bindmount.sh
-    mount ext4 loop@/.secondrom/media/.secondrom/system.img /system rw noatime wait
+    exec /sbin/mount.sh
 
     setprop ro.crypto.fuse_sdcard true
     
