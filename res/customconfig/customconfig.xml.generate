@@ -795,6 +795,11 @@ done
 		name="USB Charge" action="chargecurrent_usb" unit="mA" min="450" reversed="false" step="25" max="900"/>
       <checkbox description="If checked, BetterBatteryStatus will report discrete (non-overlapping) wakelock statistics." name="Discrete Wakelock Stats" action="generic01 /sys/module/wakelock/parameters/default_stats" label="Discrete Wakelock Stats"/>
     </settingsPane>
+		
+    <settingsPane description="Custom Bootanimation" name="Custom Bootanimation">
+      <checkbox description="Enable Custom Bootanimation (place your bootanimation.bin or bootanimation.zip in /data/local/" name="Custom Bootanimation" action="generic01 /tmp/custombootanim" label="Custom Bootanimation"/>      
+		
+    </settingsPane>
     <settingsPane description="Removing/Reinstalling root to support some apps which requires you not to have a rooted phone." name="Remove/Reinstall Root">
       <button description="Removes su and Superuser.apk files from the system partition" name="Remove Root" action="remove-root" label="Remove Root"/>
       <checkbox description="If checked, installs root on the next reboot." name="Auto-Install Root" action="generic /tmp/install_root" label="Auto-Install Root"/>

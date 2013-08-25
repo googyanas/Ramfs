@@ -102,9 +102,9 @@ echo "${ext_read_ahead_kb}" > /sys/block/mmcblk1/bdi/read_ahead_kb
 ##### GGY TouchWake end #####
 
 #mdnie sharpness tweak
-if [ "$mdniemod" == "on" ];then
-. /sbin/ext/mdnie-sharpness-tweak.sh
-fi
+#if [ "$mdniemod" == "on" ];then
+#. /sbin/ext/mdnie-sharpness-tweak.sh
+#fi
 
 if [ "$logger" == "on" ];then
 insmod /lib/modules/logger.ko
@@ -159,6 +159,11 @@ mount -o remount,ro /
 (
 /sbin/busybox sh /sbin/ext/efs-backup.sh
 ) &
+
+##### Custom Boot Animation #####
+if [ "$custombootanim" == "on" ];then
+/sbin/bootanimation.sh
+fi
 
 /sbin/tinyplay /sbin/silence.wav -D 0 -d 0 -p 880
 

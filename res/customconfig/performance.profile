@@ -64,6 +64,7 @@ int_scheduler=cfq
 ext_scheduler=cfq
 int_read_ahead_kb=256
 ext_read_ahead_kb=512
+custombootanim=off
 zram_switch=on
 zram_size=400
 zram_swappiness=80
