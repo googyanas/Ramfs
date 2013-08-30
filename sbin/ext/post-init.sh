@@ -277,7 +277,7 @@ case "$default_governor" in
         echo "100" > /sys/devices/system/cpu/cpufreq/zzmoove/smooth_up_sleep
         echo "18000" > /sys/devices/system/cpu/cpufreq/zzmoove/sampling_rate
         echo "30000" > /sys/devices/system/cpu/cpufreq/zzmoove/sampling_rate_min
-        echo "4" > /sys/devices/system/cpu/cpufreq/zzmoove/sampling_rate_sleep_multi$3 > $2plier
+        echo "4" > /sys/devices/system/cpu/cpufreq/zzmoove/sampling_rate_sleep_multiplier
         echo "1" > /sys/devices/system/cpu/cpufreq/zzmoove/sampling_down_factor
         echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/sampling_down_max_momentum
         echo "50" > /sys/devices/system/cpu/cpufreq/zzmoove/sampling_down_momentum_sensitivity
