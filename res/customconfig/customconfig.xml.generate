@@ -371,11 +371,11 @@ done
                 unit="" min="0" reversed="false" step="1" max="63"/>
     </settingsPane>
 
-    <settingsPane description="The stereo expansion effect produces a virtual 3D effect on sound." 
-		  name="Stereo expansion">
-      <seekBar  description="Stereo expansion level (0-31dB). 0 disables the control." 
-		name="Stereo expansion"
-                action="generic /sys/class/misc/wolfson_control/stereo_expansion" 
+    <settingsPane description="The stereo 3D effect produces a virtual 3D effect on sound." 
+		  name="Stereo 3D">
+      <seekBar  description="Stereo 3D level (0-31dB). 0 disables the control." 
+		name="Stereo 3D"
+                action="generic /sys/class/misc/wolfson_control/stereo_3D" 
                 unit="" min="0" reversed="false" step="1" max="31"/>
     </settingsPane>
 
