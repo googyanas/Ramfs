@@ -886,7 +886,7 @@ done
     </settingsTab>
 
 
-  <settingsTab name="ZZMoove 0.7a">
+  <settingsTab name="ZZMoove">
   
     <settingsPane description="ZZMoove governor settings. WARNING: Do NOT change anything here unless you (responsibly) know what you are doing."  
                   name="ZZMoove">          
