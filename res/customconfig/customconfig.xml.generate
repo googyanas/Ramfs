@@ -731,8 +731,8 @@ done
   <settingsTab name="Zram">
     <settingsPane description="Zram" name="Zram">
       <checkbox description="Changing any ZRAM setting NEEDS A REBOOT to be ACTIVATED !!! For the first time use, you may have to set ZRAM off then on followed by a reboot." name="Zram Switch" action="generic /tmp/zram_switch" label="ZRAM"/>
-        <seekBar description="Set ZRAM disk size in MB" 
-		name="Zram Size" action="generic /tmp/zram_size" unit=" MB" min="200" reversed="false" step="100" max="2000"/>
+        <seekBar description="Set ZRAM disk size in MB for EACH of the 4 ZRAM Disks (example : choosing 200MB means 4 Zram disks of 200MB each !" 
+		name="Zram Size" action="generic /tmp/zram_size" unit=" MB" min="100" reversed="false" step="100" max="500"/>
 
         <spinner description="Set Swappiness in %" name="Swappiness" action="generic /tmp/zram_swappiness">
              <spinnerItem name="70 %" value="70"/> 
