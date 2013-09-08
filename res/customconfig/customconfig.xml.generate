@@ -1111,6 +1111,16 @@ done
                action="generic /tmp/zzmoove_freq_step_sleep" 
                unit="" min="1" reversed="false" step="1" max="25"/>
                
+     <seekBar  description="Frequency Limit (Default=0)"
+               name="freq_limit"
+               action="generic /tmp/zzmoove_freq_limit" 
+               unit="" min="0" reversed="false" step="200" max="1600"/>
+               
+     <seekBar  description="Frequency Limit Sleep (Default=0)"
+               name="freq_limit_sleep"
+               action="generic /tmp/zzmoove_freq_limit_sleep" 
+               unit="" min="0" reversed="false" step="200" max="1600"/>
+               
     </settingsPane>
     
     </settingsTab>
@@ -1133,12 +1143,12 @@ done
                action="generic /tmp/pegasusq_cpu_down_freq" 
                unit="" min="200000" reversed="false" step="100000" max="500000"/>
 
-     <seekBar  description="Cpu up rate (Default=10)"
+     <seekBar  description="Cpu up rate (Default=16)"
                name="cpu_up_rate"
                action="generic /tmp/pegasusq_cpu_up_rate" 
                unit="" min="5" reversed="false" step="1" max="20"/>
                
-     <seekBar  description="Cpu down rate (Default=20)"
+     <seekBar  description="Cpu down rate (Default=30)"
                name="cpu_down_rate"
                action="generic /tmp/pegasusq_cpu_down_rate" 
                unit="" min="10" reversed="false" step="1" max="30"/>
@@ -1228,10 +1238,10 @@ done
                action="generic /tmp/pegasusq_sampling_down_factor" 
                unit="" min="1" reversed="false" step="1" max="5"/>
 
-     <seekBar  description="Sampling rate (Default=50000)"
+     <seekBar  description="Sampling rate (Default=30000)"
                name="sampling_rate"
                action="generic /tmp/pegasusq_sampling_rate" 
-               unit="" min="30000" reversed="false" step="10000" max="70000"/>
+               unit="" min="20000" reversed="false" step="10000" max="70000"/>
 
      <seekBar  description="Sampling rate min (Default=10000)"
                name="sampling_rate_min"
@@ -1243,10 +1253,55 @@ done
                action="generic /tmp/pegasusq_up_nr_cpus" 
                unit="" min="1" reversed="false" step="1" max="3"/>
 
-     <seekBar  description="Up threshold (Default=85)"
+     <seekBar  description="Up threshold (Default=82)"
                name="up_threshold"
                action="generic /tmp/pegasusq_up_threshold" 
                unit="" min="65" reversed="false" step="5" max="95"/>              
+                                          
+     <seekBar  description="Up threshold Diff (Default=6)"
+               name="up_threshold_diff"
+               action="generic /tmp/pegasusq_up_threshold_diff" 
+               unit="" min="1" reversed="false" step="1" max="10"/>              
+                                          
+     <seekBar  description="Grad Up threshold (Default=50)"
+               name="grad_up_threshold"
+               action="generic /tmp/pegasusq_grad_up_threshold" 
+               unit="" min="30" reversed="false" step="1" max="70"/>              
+                                          
+     <seekBar  description="Fast Down threshold (Default=40)"
+               name="fast_down_threshold"
+               action="generic /tmp/pegasusq_fast_down_threshold" 
+               unit="" min="30" reversed="false" step="1" max="70"/>              
+                                          
+     <seekBar  description="Cpu Online Bias Count (Default=2)"
+               name="cpu_online_bias_count"
+               action="generic /tmp/pegasusq_cpu_online_bias_count" 
+               unit="" min="1" reversed="false" step="5" max="10"/>              
+                                          
+     <seekBar  description="Cpu Online Bias Up Threshold (Default=65)"
+               name="cpu_online_bias_up_threshold"
+               action="generic /tmp/pegasusq_cpu_online_bias_up_threshold" 
+               unit="" min="30" reversed="false" step="1" max="70"/>              
+                                          
+     <seekBar  description="Cpu Online Bias Down Threshold (Default=30)"
+               name="cpu_online_bias_down_threshold"
+               action="generic /tmp/pegasusq_cpu_online_bias_down_threshold" 
+               unit="" min="30" reversed="false" step="1" max="70"/>              
+                                          
+     <seekBar  description="Frequency Step decrease (Default=13)"
+               name="freq_step_dec"
+               action="generic /tmp/pegasusq_freq_step_dec" 
+               unit="" min="5" reversed="false" step="1" max="35"/>              
+                                          
+     <seekBar  description="Up Threshold  At Fast Down (Default=95)"
+               name="up_threshold_at_fast_down"
+               action="generic /tmp/pegasusq_up_threshold_at_fast_down" 
+               unit="" min="75" reversed="false" step="1" max="99"/>              
+                                          
+     <seekBar  description="Frequency for Fast Down (Default=1200000)"
+               name="freq_for_fast_down"
+               action="generic /tmp/pegasusq_freq_for_fast_down" 
+               unit="" min="800000" reversed="false" step="100000" max="1400000"/>              
                                           
  </settingsPane>
    
