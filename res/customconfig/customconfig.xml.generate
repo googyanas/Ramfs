@@ -1136,12 +1136,12 @@ done
      <seekBar  description="Cpu up frequency (Default=500000)"
                name="cpu_up_freq"
                action="generic /tmp/pegasusq_cpu_up_freq" 
-               unit="" min="400000" reversed="false" step="100000" max="800000"/>
+               unit="" min="400000" reversed="false" step="100000" max="1400000"/>
 
      <seekBar  description="Cpu down frequency (Default=200000)"
                name="cpu_down_freq"
                action="generic /tmp/pegasusq_cpu_down_freq" 
-               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+               unit="" min="200000" reversed="false" step="100000" max="400000"/>
 
      <seekBar  description="Cpu up rate (Default=16)"
                name="cpu_up_rate"
@@ -1166,32 +1166,32 @@ done
      <seekBar  description="Hotplug frequency 1_1 (Default=500000)"
                name="hotplug_freq_1_1"
                action="generic /tmp/pegasusq_hotplug_freq_1_1" 
-               unit="" min="300000" reversed="false" step="100000" max="800000"/>
+               unit="" min="300000" reversed="false" step="100000" max="1400000"/>
 
      <seekBar  description="Hotplug frequency 2_0 (Default=200000)"
                name="hotplug_freq_2_0"
                action="generic /tmp/pegasusq_hotplug_freq_2_0" 
-               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+               unit="" min="200000" reversed="false" step="100000" max="400000"/>
 
      <seekBar  description="Hotplug frequency 2_1 (Default=500000)"
                name="hotplug_freq_2_1"
                action="generic /tmp/pegasusq_hotplug_freq_2_1" 
-               unit="" min="300000" reversed="false" step="100000" max="800000"/>
+               unit="" min="300000" reversed="false" step="100000" max="1400000"/>
 
      <seekBar  description="Hotplug frequency 3_0 (Default=200000)"
                name="hotplug_freq_3_0"
                action="generic /tmp/pegasusq_hotplug_freq_3_0" 
-               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+               unit="" min="200000" reversed="false" step="100000" max="400000"/>
 
      <seekBar  description="Hotplug frequency 3_1 (Default=500000)"
                name="hotplug_freq_3_1"
                action="generic /tmp/pegasusq_hotplug_freq_3_1" 
-               unit="" min="300000" reversed="false" step="100000" max="800000"/>
+               unit="" min="300000" reversed="false" step="100000" max="1400000"/>
 
      <seekBar  description="Hotplug frequency 4_0 (Default=200000)"
                name="hotplug_freq_4_0"
                action="generic /tmp/pegasusq_hotplug_freq_4_0" 
-               unit="" min="200000" reversed="false" step="100000" max="500000"/>
+               unit="" min="200000" reversed="false" step="100000" max="400000"/>
 
      <seekBar  description="Hotplug rq 1_1 (Default=100)"
                name="hotplug_rq_1_1"
