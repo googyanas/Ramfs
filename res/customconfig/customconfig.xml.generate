@@ -493,6 +493,16 @@ done
       <seekBar description="Touch-To-Wake Delay in seconds (Default is 5ms). Setting Delay to 0 makes Touch-to-Wake permanently active !" 
 		name="Touch-To-Wake Delay" action="touch2wake touchwakedelay" unit=" sec" min="0" reversed="false" step="1" max="60"/>
    </settingsPane>
+    <settingsPane description="Touchkeys backlight" name="Touchkeys backlight">
+       <spinner description="Touchkeys backlight mode" name="Touchkeys backlight mode" action="generic /sys/class/sec/sec_touchkey/touch_led_handling">
+             <spinnerItem name="Sammy or CM10.2" value="0"/> 
+             <spinnerItem name="CM10.1" value="1"/> 
+        </spinner>
+       <spinner description="Touchkeys backlight on screen touch" name="Touchkeys backlight on screen touch" action="generic /sys/class/sec/sec_touchkey/touch_led_on_screen_touch">
+             <spinnerItem name="Only when touchkey is pressed" value="0"/> 
+             <spinnerItem name="Touchkey or screen is pressed" value="1"/> 
+        </spinner>
+   </settingsPane>
   </settingsTab>
 
   <settingsTab name="MDNIE">

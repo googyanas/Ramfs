@@ -290,3 +290,5 @@ led_fade_dt1=1
 led_fade_dt2=1
 led_fade_dt3=2
 led_fade_dt4=3
+touch_led_handling=0
+touch_led_on_screen_touch=1
