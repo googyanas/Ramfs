@@ -356,7 +356,6 @@ done
              <spinnerItem name="Enabled" value="1"/> 
              <spinnerItem name="Disabled" value="0"/> 
       </spinner>
-
     </settingsPane>
 
     <settingsPane description="Headphone amplification increases volume only on headphones and headsets." 
@@ -476,11 +475,11 @@ done
              <spinnerItem name="1200MHz" value="4"/> 
              <spinnerItem name="1000MHz" value="6"/> 
              <spinnerItem name="900MHz" value="7"/> 
-             <spinnerItem name="800MHz (default)" value="8"/> 
+             <spinnerItem name="800MHz" value="8"/> 
              <spinnerItem name="700MHz" value="9"/> 
              <spinnerItem name="600MHz" value="10"/> 
              <spinnerItem name="500MHz" value="11"/> 
-             <spinnerItem name="200MHz (disabled)" value="14"/> 
+             <spinnerItem name="Disabled (Default)" value="14"/> 
        </spinner>
               <seekBar description="FB earlysuspend delay to run CRT animation when you turn the screen off." 
 		name="FB Earlysuspend Delay" action="generickmem fbearlysuspend_delay 0 int" unit=" ms" min="0" reversed="false" step="100" max="500"/>
