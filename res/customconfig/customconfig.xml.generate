@@ -1031,32 +1031,32 @@ done
      <seekBar  description="Down Threshold Hotplug Freq1 (Default=0)"
                name="down_threshold_hotplug_freq1"
                action="generic /tmp/zzmoove_down_threshold_hotplug_freq1" 
-               unit="" min="0" reversed="false" step="200000" max="1600000"/>
+               unit="" min="0" reversed="false" step="100000" max="1600000"/>
 
      <seekBar  description="Down Threshold Hotplug Freq2 (Default=0)"
                name="down_threshold_hotplug_freq2"
                action="generic /tmp/zzmoove_down_threshold_hotplug_freq2" 
-               unit="" min="0" reversed="false" step="200000" max="1600000"/>
+               unit="" min="0" reversed="false" step="100000" max="1600000"/>
 
      <seekBar  description="Down Threshold Hotplug Freq3 (Default=0)"
                name="down_threshold_hotplug_freq3"
                action="generic /tmp/zzmoove_down_threshold_hotplug_freq3" 
-               unit="" min="0" reversed="false" step="200000" max="1600000"/>
+               unit="" min="0" reversed="false" step="100000" max="1600000"/>
 
      <seekBar  description="Up Threshold Hotplug Freq1 (Default=0)"
                name="up_threshold_hotplug_freq1"
                action="generic /tmp/zzmoove_up_threshold_hotplug_freq1" 
-               unit="" min="0" reversed="false" step="200000" max="1600000"/>
+               unit="" min="0" reversed="false" step="100000" max="1600000"/>
 
      <seekBar  description="Up Threshold Hotplug Freq2 (Default=0)"
                name="up_threshold_hotplug_freq2"
                action="generic /tmp/zzmoove_up_threshold_hotplug_freq2" 
-               unit="" min="0" reversed="false" step="200000" max="1600000"/>
+               unit="" min="0" reversed="false" step="100000" max="1600000"/>
 
      <seekBar  description="Up Threshold Hotplug Freq3 (Default=0)"
                name="up_threshold_hotplug_freq3"
                action="generic /tmp/zzmoove_up_threshold_hotplug_freq3" 
-               unit="" min="0" reversed="false" step="200000" max="1600000"/>
+               unit="" min="0" reversed="false" step="100000" max="1600000"/>
                
      <seekBar  description="Up Threshold on earlysuspend (Default=90)"
                name="up_threshold_sleep"
