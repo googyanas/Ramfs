@@ -958,34 +958,6 @@ done
                   name="ZZMoove">          
     </settingsPane>
 
-<settingsPane description="LCDFreq Settings" name="LCDFreq Settings">                  
-                  
- <spinner description="LCDFreq (Default=Disabled)" name="lcdfreq_enable" action="generic /tmp/zzmoove_lcdfreq_enable">
-             <spinnerItem name="Disabled" value="0"/> 
-             <spinnerItem name="Enabled" value="1"/> 
- </spinner>
- 
-     <seekBar  description="LCDFreq kick in cores (Default=0)"
-               name="lcdfreq_kick_in_cores"
-               action="generic /tmp/zzmoove_lcdfreq_kick_in_cores" 
-               unit="" min="0" reversed="false" step="1" max="3"/>
-
-     <seekBar  description="LCDFreq kick in freq (Default=500000)"
-               name="lcdfreq_kick_in_freq"
-               action="generic /tmp/zzmoove_lcdfreq_kick_in_freq" 
-               unit="" min="300000" reversed="false" step="100000" max="900000"/>
-
-     <seekBar  description="LCDFreq kick in down delay (Default=20)"
-               name="lcdfreq_kick_in_down_delay"
-               action="generic /tmp/zzmoove_lcdfreq_kick_in_down_delay" 
-               unit="" min="10" reversed="false" step="1" max="50"/>
-
-     <seekBar  description="LCDFreq kick in up delay (Default=50)"
-               name="lcdfreq_kick_in_up_delay"
-               action="generic /tmp/zzmoove_lcdfreq_kick_in_up_delay" 
-               unit="" min="30" reversed="false" step="1" max="70"/>
- </settingsPane>
- 
  <settingsPane description="Thresholds Settings" name="Thresholds Settings">                  
 
       <seekBar  description="Up Threshold (Default=70)"

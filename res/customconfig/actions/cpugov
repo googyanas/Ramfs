@@ -83,11 +83,6 @@ case "$default_governor" in
   ;;
   2)
         echo "zzmoove" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_enable
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_cores
-        echo "20" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_down_delay
-        echo "500000" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_freq
-        echo "50" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_up_delay
         echo "40" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold
         echo "45" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug1
         echo "55" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug2
@@ -122,11 +117,6 @@ case "$default_governor" in
     ;;
   3)	  
         echo "zzmoove" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_enable
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_cores
-        echo "20" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_down_delay
-        echo "500000" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_freq
-        echo "50" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_up_delay
         echo "52" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold
         echo "55" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug1
         echo "55" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug2
@@ -167,11 +157,6 @@ case "$default_governor" in
      ;;
    4)   
         echo "zzmoove" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_enable
-        echo "0" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_cores
-        echo "20" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_down_delay
-        echo "500000" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_freq
-        echo "50" > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_up_delay
         echo "20" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold
         echo "25" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug1
         echo "35" > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug2
@@ -212,11 +197,6 @@ case "$default_governor" in
     ;;
   5)  
         echo "zzmoove" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-        echo $zzmoove_lcdfreq_enable > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_enable
-        echo $zzmoove_lcdfreq_kick_in_cores > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_cores
-        echo $zzmoove_lcdfreq_kick_in_down_delay > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_down_delay
-        echo $zzmoove_lcdfreq_kick_in_freq > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_freq
-        echo $zzmoove_lcdfreq_kick_in_up_delay > /sys/devices/system/cpu/cpufreq/zzmoove/lcdfreq_kick_in_up_delay
         echo $zzmoove_down_threshold > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold
         echo $zzmoove_down_threshold_hotplug1 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug1
         echo $zzmoove_down_threshold_hotplug2 > /sys/devices/system/cpu/cpufreq/zzmoove/down_threshold_hotplug2
