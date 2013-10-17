@@ -887,6 +887,16 @@ done
 		name="USB Charge" action="chargecurrent_usb" unit="mA" min="450" reversed="false" step="25" max="900"/>
       <checkbox description="If checked, BetterBatteryStatus will report discrete (non-overlapping) wakelock statistics." name="Discrete Wakelock Stats" action="generic01 /sys/module/wakelock/parameters/default_stats" label="Discrete Wakelock Stats"/>
     </settingsPane>
+    
+    <settingsPane description="TCP settings" name="TCP settings">
+      <spinner description="TCP congestion control method" name="TCP congestion control method" action="generic /proc/sys/net/ipv4/tcp_congestion_control">
+             <spinnerItem name="cubic" value="cubic"/>
+             <spinnerItem name="westwood (Default)" value="westwood"/>
+             <spinnerItem name="reno" value="reno"/> 
+             <spinnerItem name="bic" value="bic"/> 
+             <spinnerItem name="htcp" value="htcp"/> 
+      </spinner>
+    </settingsPane>
 		
     <settingsPane description="Custom Bootanimation" name="Custom Bootanimation">
       <checkbox description="Enable Custom Bootanimation (place your bootanimation.bin or bootanimation.zip in /data/local/" name="Custom Bootanimation" action="generic01 /tmp/custombootanim" label="Custom Bootanimation"/>      
