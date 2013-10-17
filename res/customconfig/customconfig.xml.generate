@@ -735,6 +735,32 @@ done
                 unit="" min="-64" reversed="false" step="1" max="32"/>
 
     </settingsPane>
+    
+    <settingsPane description=""
+		  name="Digital edge enhancement control">
+
+      <checkbox  description="" 
+                name="Digital edge enhancement UI master switch" 
+                action="generic01 /sys/class/misc/mdnie/hook_control/s_edge_enhancement"
+                label="Toggle edge enhancement for user interface"/>
+
+      <seekBar  description=""
+		name="Amount"
+                action="generic /sys/class/misc/mdnie/hook_control/de_positive_e"
+                unit="" min="-128" reversed="false" step="1" max="128"/>
+
+      <seekBar  description=""
+		name="Radius"
+                action="generic /sys/class/misc/mdnie/hook_control/de_positive_f"
+                unit="" min="-128" reversed="false" step="1" max="128"/>
+
+      <seekBar  description=""
+		name="Threshold"
+                action="generic /sys/class/misc/mdnie/hook_control/de_positive_b"
+                unit="" min="-128" reversed="false" step="1" max="128"/>
+
+    </settingsPane>
+
   </settingsTab>
     
   <settingsTab name="Zram">
