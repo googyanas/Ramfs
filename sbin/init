@@ -117,8 +117,6 @@ else
   mount -t ext4 /dev/block/mmcblk0p9 /system
 fi
 
-rm -f /system/etc/init.d/10sd_mount_ggy
-rm -f /system/etc/init.d/10sd_mount
 rm -f /*.ggy
 
 MIUI=0
@@ -187,10 +185,6 @@ if [ "$SECONDROM" == "1" ];then
   mv /init.rc.2 /init.rc
   mv /fstab.smdk4x12.2 /fstab.smdk4x12
 	if [ "$CM102" == 1 ];then
-#	  mv /innt.2 /innt
-#	  echo "#!/system/bin/sh" > /system/etc/init.d/10sd_mount_ggy
-#	  echo "/system/bin/sdcard /.secondrom/media /mnt/shell/emulated 1023 1023" >> /system/etc/init.d/10sd_mount_ggy
-#	  chmod a+x /system/etc/init.d/10sd_mount_ggy
 	  rm -f /system/etc/init.d/10sd_mount_ggy
 	  rm -f /system/etc/init.d/10sd_mount
 	else
