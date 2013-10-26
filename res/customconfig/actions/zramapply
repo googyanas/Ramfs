@@ -6,21 +6,10 @@ if [ "$zram_switch" == "on" ];then
   swapoff /dev/block/zram1 > /dev/null 2>&1
   swapoff /dev/block/zram2 > /dev/null 2>&1
   swapoff /dev/block/zram3 > /dev/null 2>&1
-  echo 1 > /sys/devices/virtual/block/zram0/reset & pid1=$!
-  echo 1 > /sys/devices/virtual/block/zram1/reset & pid2=$!
-  echo 1 > /sys/devices/virtual/block/zram2/reset & pid3=$!
-  echo 1 > /sys/devices/virtual/block/zram3/reset & pid4=$!
-  LOOP=0
-  FINISH=0
-  # Assume we have maximum of 180 seconds, just in case we got infinite loop
-  while [ $LOOP -lt 90 ] && [ $FINISH -ne 1 ] ; do
-    if [ `ps | awk '{print $2}' | grep $pid1 | wc -l` -eq 0 ] && [ `ps | awk '{print $2}' | grep $pid2 | wc -l` -eq 0 ] && [ `ps | awk '{print $2}' | grep $pid3 | wc -l` -eq 0 ] && [ `ps | awk '{print $2}' | grep $pid4 | wc -l` -eq 0 ]; then
-      # All exited, so it's over
-      FINISH=1
-    fi
-    LOOP=`expr $LOOP + 1`
-    sleep 2
-  done
+  echo 1 > /sys/devices/virtual/block/zram0/reset
+  echo 1 > /sys/devices/virtual/block/zram1/reset
+  echo 1 > /sys/devices/virtual/block/zram2/reset
+  echo 1 > /sys/devices/virtual/block/zram3/reset
   
  case "$zram_disks" in
  1)
