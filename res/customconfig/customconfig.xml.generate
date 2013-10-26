@@ -220,7 +220,7 @@ done
     <settingsPane description="Headphone Amplification Settings" name="Headphone Amplification">
       <seekBar description="Headphone Amplifier Level (0-63 which corresponds to -57db-6db)" 
 		name="Headphone Amplifier" action="generic /sys/class/misc/scoobydoo_sound/headphone_amplifier_level" unit="" min="0" reversed="false" step="1" max="63"/>
-      <seekBar description="Headphone Balance (-10 to 10 [Default is 0])" 
+      <seekBar description="Headphone Balance (-15 to 15 [Default is 0])" 
 		name="Headphone Balance" action="generic /sys/class/misc/scoobydoo_sound/headphone_balance" unit="" min="-15" reversed="false" step="1" max="15"/>
     </settingsPane>
     <settingsPane description="3D Effect Settings" name="3D Effect">
