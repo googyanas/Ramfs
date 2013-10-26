@@ -32,6 +32,13 @@ echo "${scaling_max_freq}" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_fr
 #cpu undervolting
 echo "${cpu_undervolting}" > /sys/devices/system/cpu/cpu0/cpufreq/vdd_levels
 
+#dynamic fsync
+if [ "$Dyn_fsync_active" == "on" ];then
+echo 1 > /sys/kernel/dyn_fsync/Dyn_fsync_active
+else
+echo 0 > /sys/kernel/dyn_fsync/Dyn_fsync_active
+fi
+
 ##### GGY Swap #####
 
 #  `expr $zram_size \* 1024 \* 1024`
