@@ -482,7 +482,7 @@ done
              <spinnerItem name="Disabled (Default)" value="14"/> 
        </spinner>
               <seekBar description="FB earlysuspend delay to run CRT animation when you turn the screen off." 
-		name="FB Earlysuspend Delay" action="generickmem fbearlysuspend_delay 0 int" unit=" ms" min="0" reversed="false" step="100" max="500"/>
+		name="FB Earlysuspend Delay" action="generic /sys/power/fbearlysuspend_delay" unit=" ms" min="0" reversed="false" step="100" max="1000"/>
             </settingsPane>
     <settingsPane description="Touch-to-Wake settings" name="Touch-to-Wake Settings">
        <spinner description="Touch-to-Wake" name="Touch-to-Wake" action="touch2wake touchwake">
@@ -890,8 +890,8 @@ done
     
     <settingsPane description="TCP settings" name="TCP settings">
       <spinner description="TCP congestion control method" name="TCP congestion control method" action="generic /proc/sys/net/ipv4/tcp_congestion_control">
-             <spinnerItem name="cubic" value="cubic"/>
-             <spinnerItem name="westwood (Default)" value="westwood"/>
+             <spinnerItem name="cubic (Default)" value="cubic"/>
+             <spinnerItem name="westwood" value="westwood"/>
              <spinnerItem name="reno" value="reno"/> 
              <spinnerItem name="bic" value="bic"/> 
              <spinnerItem name="htcp" value="htcp"/> 
