@@ -463,6 +463,12 @@ case "$default_governor" in
         echo $zzmoove_freq_limit > /sys/devices/system/cpu/cpufreq/zzmoove/freq_limit
         echo $zzmoove_freq_limit_sleep > /sys/devices/system/cpu/cpufreq/zzmoove/freq_limit_sleep
     ;;
+  6)  
+        echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    ;;
+  7)  
+        echo "smartassV2" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    ;;
 esac;
 
 #	while ! /sbin/busybox pgrep android.process.acore ; do

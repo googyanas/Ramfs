@@ -45,6 +45,8 @@ cat << ENDCONFIG
              <spinnerItem name="zzmoove-balanced" value="3"/> 
              <spinnerItem name="zzmoove-performance" value="4"/> 
              <spinnerItem name="zzmoove-custom" value="5"/> 
+             <spinnerItem name="ondemand" value="6"/> 
+             <spinnerItem name="smartassV2" value="7"/> 
        </spinner>
       <spinner description="Set the maximum freqency the CPU scales up to. Default: 1400 MHz." 
                name="CPU max frequency" 
@@ -855,6 +857,7 @@ done
              <spinnerItem name="deadline" value="deadline"/> 
              <spinnerItem name="sio" value="sio"/> 
              <spinnerItem name="vr" value="vr"/> 
+             <spinnerItem name="fifo" value="fifo"/> 
       </spinner>
       <seekBar  description="The read-ahead value for the internal storage." 
                 name="Internal storage read-ahead" 
@@ -868,6 +871,7 @@ done
              <spinnerItem name="deadline" value="deadline"/> 
              <spinnerItem name="sio" value="sio"/> 
              <spinnerItem name="vr" value="vr"/> 
+             <spinnerItem name="fifo" value="fifo"/> 
       </spinner>
 
       <seekBar  description="The read-ahead value for the external storage (SD-Card)." 
