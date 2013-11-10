@@ -52,30 +52,18 @@ then
   fi
 fi;
 
-echo "Checking if STweaks is installed"
-#stmd5sum=`/sbin/busybox md5sum /system/app/STweaks.apk | /sbin/busybox awk '{print $1}'`
-#if [ "$stmd5sum" == "0936a23cbcf1092be8fba4a8905fcd22" ];then
-#installstweaks=1
-#fi
+if [ ! -f /system/app/STweaks_Googy-Max.apk ];then
+  rm /system/app/STweaks.apk
+  rm -f /data/app/com.gokhanmoral.STweaks*
+  rm -f /data/dalvik-cache/*STweaks.*
+  rm -f /data/app/com.gokhanmoral.stweaks*
+  rm -f /data/dalvik-cache/*stweaks*
 
-#if [ ! -f /system/.googy/stweaks-installed ]; then
-#installstweaks=1
-#fi
+  cat /res/STweaks_Googy-Max.apk > /system/app/STweaks_Googy-Max.apk
+  chown 0.0 /system/app/STweaks_Googy-Max.apk
+  chmod 644 /system/app/STweaks_Googy-Max.apk
+fi
 
-#if [ "$installstweaks" == "1" ];then
-#  rm /system/app/STweaks.apk
-#  rm -f /data/app/com.gokhanmoral.STweaks*
-#  rm -f /data/dalvik-cache/*STweaks.*
-#  rm -f /data/app/com.gokhanmoral.stweaks*
-#  rm -f /data/dalvik-cache/*stweaks*
-#
-#  cat /res/STweaks.apk > /system/app/STweaks.apk
-#  chown 0.0 /system/app/STweaks.apk
-#  chmod 644 /system/app/STweaks.apk
-#  mkdir /system/.googy
-#  chmod 755 /system/.googy
-#  echo 1 > /system/.googy/stweaks-installed
-#fi
 echo "ntfs-3g..."
 if [ ! -s /system/xbin/ntfs-3g ];
 then
