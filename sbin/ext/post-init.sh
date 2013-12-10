@@ -45,15 +45,14 @@ fi
   
 if [ "$zram_switch" == "on" ];then
 
-  echo `expr $zram_swappiness \* 1` > /proc/sys/vm/swappiness
-  swapoff /dev/block/zram0 > /dev/null 2>&1
-  swapoff /dev/block/zram1 > /dev/null 2>&1
-  swapoff /dev/block/zram2 > /dev/null 2>&1
-  swapoff /dev/block/zram3 > /dev/null 2>&1
   echo 1 > /sys/devices/virtual/block/zram0/reset
   echo 1 > /sys/devices/virtual/block/zram1/reset
   echo 1 > /sys/devices/virtual/block/zram2/reset
   echo 1 > /sys/devices/virtual/block/zram3/reset
+  /sbin/busybox2 swapoff /dev/block/zram0 > /dev/null 2>&1
+  /sbin/busybox2 swapoff /dev/block/zram1 > /dev/null 2>&1
+  /sbin/busybox2 swapoff /dev/block/zram2 > /dev/null 2>&1
+  /sbin/busybox2 swapoff /dev/block/zram3 > /dev/null 2>&1
 
  case "$zram_disks" in
  1)
@@ -117,10 +116,10 @@ fi
 
 if [ "$zram_switch" == "off" ];then
 
-  swapoff /dev/block/zram0 > /dev/null 2>&1
-  swapoff /dev/block/zram1 > /dev/null 2>&1
-  swapoff /dev/block/zram2 > /dev/null 2>&1
-  swapoff /dev/block/zram3 > /dev/null 2>&1
+  /sbin/busybox2 swapoff /dev/block/zram0 > /dev/null 2>&1
+  /sbin/busybox2 swapoff /dev/block/zram1 > /dev/null 2>&1
+  /sbin/busybox2 swapoff /dev/block/zram2 > /dev/null 2>&1
+  /sbin/busybox2 swapoff /dev/block/zram3 > /dev/null 2>&1
   umount /dev/block/zram0 > /dev/null 2>&1
   umount /dev/block/zram1 > /dev/null 2>&1
   umount /dev/block/zram2 > /dev/null 2>&1

@@ -55,8 +55,9 @@ fi;
 if [ ! -f /system/app/STweaks_Googy-Max.apk ];then
   rm /system/app/STweaks.apk
   rm -f /data/app/com.gokhanmoral.STweaks*
-  rm -f /data/dalvik-cache/*STweaks.*
+  rm -f /data/dalvik-cache/*STweaks*.*
   rm -f /data/app/com.gokhanmoral.stweaks*
+  rm -f /data/app/*stweaks*
   rm -f /data/dalvik-cache/*stweaks*
 
   cat /res/STweaks_Googy-Max.apk > /system/app/STweaks_Googy-Max.apk
