@@ -41,6 +41,14 @@ chmod 755 /mnt
 mkdir /.secondrom
 mount -t ext4 /dev/block/mmcblk0p12 /.secondrom
 
+if [ -f /.secondrom/.secondaryboot ]; then
+TMP=`cat /.secondrom/.secondaryboot`
+ if [ "$TMP" == "1" ] ; then
+  echo "2" > /.secondrom/media/.nextboot;
+ fi
+  rm -f /.secondrom/.secondaryboot
+fi
+
 NEXTBOOT=`cat /.secondrom/media/.nextboot`
 rm -f /.secondrom/media/.nextboot
 DEFAULTROM=`cat /.secondrom/media/.defaultrom`
